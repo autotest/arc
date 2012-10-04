@@ -1,0 +1,5 @@
+.. -*- mode: rst; -*-
+
+.. |generator| replace:: This function is implemeted as a generator, so objects will be created and returned on demand.
+
+.. |get_data| replace:: Returns data in raw format from the Autotest RPC server. By default all data will be returned, unless filtered.
