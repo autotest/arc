@@ -27,7 +27,14 @@ ARG_ID = (('-i', '--id'),
 #
 # Arguments that are treated as actions
 #
+ARG_LIST_JOBS = (('-j', '--list-jobs'),
+                 {'help': 'list the jobs running on the listed hosts',
+                  'action': 'store_true',
+                  'default': False})
+
+
 ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
+                    ARG_LIST_JOBS,
                     arc.cli.args.base.ADD,
                     arc.cli.args.base.DELETE]
 

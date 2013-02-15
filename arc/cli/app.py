@@ -113,9 +113,9 @@ class App(object):
                 h = self.parsed_arguments.host
                 self.log.debug("Connecting to: %s", h)
                 self.connection = arc.connection.Connection(h)
-                if not self.connection.ping():
-                    self.log.error("Could not validate connection to server")
-                    raise SystemExit
+                #if not self.connection.ping():
+                #    self.log.error("Could not validate connection to server")
+                #    raise SystemExit
             else:
                 self.log.warn("Host setting not present on arguments, not "
                               "initializing a connection")
@@ -154,6 +154,10 @@ class App(object):
         elif (hasattr(self.parsed_arguments, 'modify') and
               self.parsed_arguments.modify):
             action = 'modify'
+        elif (hasattr(self.parsed_arguments, 'list_jobs') and
+              self.parsed_arguments.list_jobs):
+            action = 'list_jobs'
+
 
         if hasattr(module, action):
             self.log.debug("Calling action %s from module %s",
