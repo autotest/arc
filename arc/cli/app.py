@@ -142,13 +142,17 @@ class App(object):
         # exclusive group, so that all action arguments are picked up here
         # make list the default action
         action = 'list_brief'
-        if self.parsed_arguments.list_brief:
+        if (hasattr(self.parsed_arguments, 'list_brief') and
+            self.parsed_arguments.list_brief):
             action = 'list_brief'
-        elif self.parsed_arguments.add:
+        elif (hasattr(self.parsed_arguments, 'add') and
+              self.parsed_arguments.add):
             action = 'add'
-        elif self.parsed_arguments.delete:
+        elif (hasattr(self.parsed_arguments, 'delete') and
+              self.parsed_arguments.delete):
             action = 'delete'
-        elif self.parsed_arguments.modify:
+        elif (hasattr(self.parsed_arguments, 'modify') and
+              self.parsed_arguments.modify):
             action = 'modify'
 
         if hasattr(module, action):
