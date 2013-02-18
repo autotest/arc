@@ -34,7 +34,7 @@ def list_jobs(app):
     def get_job_id_name(queue, host_id):
         for j in queue:
             if j['host']['id'] == host_id:
-                return (j['id'], j['job']['name'])
+                return (j['job']['id'], j['job']['name'])
         return ('', '')
 
     line_fmt = "%-6s%-34s%-8s%-80s"
