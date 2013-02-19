@@ -22,6 +22,12 @@ __all__ = ['get_data',
 
 
 #
+# Service on RPC server hosting these methods
+#
+SERVICE_NAME = arc.defaults.AFE_SERVICE_NAME
+
+
+#
 # Name of fields as defined on the server side database
 #
 ID_FIELD = 'id'
@@ -40,23 +46,28 @@ MODIFY_METHOD = 'modify_label'
 #
 # Boiler plate code for remote methods that are generic enough to be reused
 #
-get_data = functools.partial(arc.base.get_data, GET_METHOD)
+get_data = functools.partial(arc.base.get_data, SERVICE_NAME, GET_METHOD)
 get_ids = functools.partial(arc.base.get_and_filter, get_data, ID_FIELD)
 get_names = functools.partial(arc.base.get_and_filter, get_data, NAME_FIELD)
 get_ids_names = functools.partial(arc.base.get_id_name_and_filter, get_data,
                                   ID_FIELD, NAME_FIELD)
-get_data_by_id = functools.partial(arc.base.get_by, GET_METHOD, ID_FIELD)
-get_data_by_name = functools.partial(arc.base.get_by, GET_METHOD, NAME_FIELD)
-delete = functools.partial(arc.base.delete, DELETE_METHOD)
+get_data_by_id = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                   ID_FIELD)
+get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                     NAME_FIELD)
+delete = functools.partial(arc.base.delete, SERVICE_NAME, DELETE_METHOD)
 
 
+#
+# Methods that have add more logic related to the manipulated object nature
+#
 def add(connection, name, kernel_config=None, platform=None,
         only_if_needed=None):
     """
     Add a new label entry
     """
-    return connection.run(ADD_METHOD, name, kernel_config, platform,
-                          only_if_needed)
+    return connection.run(SERVICE_NAME, ADD_METHOD, name, kernel_config,
+                          platform, only_if_needed)
 
 
 class Label(arc.base.Model):
