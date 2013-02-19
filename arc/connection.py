@@ -35,7 +35,7 @@ class BaseConnection(object):
     """
     Base RPC connection
     """
-    def __init__(self, hostname=None, path=None):
+    def __init__(self, hostname=None, port=None, path=None):
         """
         Initializes a connection to an empty path
 
@@ -44,6 +44,10 @@ class BaseConnection(object):
         if hostname is None:
             hostname = arc.config.get_default().get_server_host()
         self.hostname = hostname
+
+        if port is None:
+            port = arc.config.get_default().get_server_port()
+        self.port = port
 
         if path is None:
             path = arc.defaults.RPC_PATH
@@ -61,7 +65,7 @@ class BaseConnection(object):
         :param path: the URI path where the service is hosted
         """
         headers = {'AUTHORIZATION': os.environ.get('USER', 'debug_user')}
-        rpc_uri = "http://%s%s" % (self.hostname, path)
+        rpc_uri = "http://%s:%s%s" % (self.hostname, self.port, path)
         return arc.jsonrpc.ServiceProxy(rpc_uri, headers=headers)
 
 
@@ -97,8 +101,11 @@ class AfeConnection(BaseConnection):
            contacted upon RPC method execution.
     :param path: the base URI where the server is running the AFE service
     """
-    def __init__(self, hostname=None, path=arc.defaults.AFE_RPC_PATH):
-        super(AfeConnection, self).__init__(hostname, path)
+    def __init__(self,
+                 hostname=None,
+                 port=None,
+                 path=arc.defaults.AFE_RPC_PATH):
+        super(AfeConnection, self).__init__(hostname, port, path)
 
 
 #: Connection is an alias to AfeConnection, since it's the most used service
@@ -114,8 +121,11 @@ class TkoConnection(BaseConnection):
     :param path: the base URI where the server is running the TKO service
 
     """
-    def __init__(self, hostname=None, path=arc.defaults.TKO_RPC_PATH):
-        super(TkoConnection, self).__init__(hostname, path)
+    def __init__(self,
+                 hostname=None,
+                 port=None,
+                 path=arc.defaults.TKO_RPC_PATH):
+        super(TkoConnection, self).__init__(hostname, port, path)
 
 
 #: Global, default connection to an AFE service for ease of use by apps

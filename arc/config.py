@@ -79,6 +79,21 @@ class UserLocalConfigParser(configparser.ConfigParser):
         return value
 
 
+    def get_server_port(self):
+        """
+        Returns the server port, defaulting to what is in :mod:`arc.defaults`
+        """
+        section = 'server'
+        key = 'port'
+        value = None
+        if self.has_section(section):
+            value = self.getint(section, key)
+        if not value:
+            value = arc.defaults.SERVER_PORT
+
+        return value
+
+
 Config = UserLocalConfigParser
 CONFIG = None
 
