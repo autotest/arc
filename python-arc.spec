@@ -6,7 +6,7 @@
 Summary: Autotest RPC Client
 Name: python-arc
 Version: 0.0.2
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2
 Group: Development/Libraries
 URL: http://autotest.github.com
@@ -14,6 +14,7 @@ BuildArch: noarch
 #Source0: %{name}-%{version}.tar.gz
 Source0: %{shortname}-%{version}.tar.gz
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
+BuildRequires: python >= 2.7
 Requires: python >= 2.7
 
 %description
@@ -25,11 +26,11 @@ It allows one to send test jobs, add machine hosts, etc.
 %setup -q -n %{shortname}-%{version}
 
 %build
-python setup.py build
+%{__python} setup.py build
 
 %install
 rm -rf %{buildroot}
-python setup.py install --root %{buildroot} --skip-build
+%{__python} setup.py install --root %{buildroot} --skip-build
 rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 
 %clean
@@ -44,6 +45,10 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Feb 19 2013 Cleber Rosa <cleber@redhat.com> - 0.0.2-2
+- Replaced python commands for respective macros
+- Add python as a build time requirement
+
 * Tue Feb 19 2013 Cleber <cleber@redhat.com> - 0.0.2-1
 - Updated to version 0.0.2
 
