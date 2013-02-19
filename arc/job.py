@@ -20,6 +20,12 @@ __all__ = ['get_data',
 
 
 #
+# Service on RPC server hosting these methods
+#
+SERVICE_NAME = arc.defaults.AFE_SERVICE_NAME
+
+
+#
 # Name of fields as defined on the server side database
 #
 ID_FIELD = 'id'
@@ -36,13 +42,15 @@ ADD_METHOD = 'create_job'
 #
 # Boiler plate code for remote methods that are generic enough to be reused
 #
-get_data = functools.partial(arc.base.get_data, GET_METHOD)
+get_data = functools.partial(arc.base.get_data, SERVICE_NAME, GET_METHOD)
 get_ids = functools.partial(arc.base.get_and_filter, get_data, ID_FIELD)
 get_names = functools.partial(arc.base.get_and_filter, get_data, NAME_FIELD)
 get_ids_names = functools.partial(arc.base.get_id_name_and_filter, get_data,
                                   ID_FIELD, NAME_FIELD)
-get_data_by_id = functools.partial(arc.base.get_by, GET_METHOD, ID_FIELD)
-get_data_by_name = functools.partial(arc.base.get_by, GET_METHOD, NAME_FIELD)
+get_data_by_id = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                   ID_FIELD)
+get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                     NAME_FIELD)
 
 
 def add(connection, name, control_file, control_type, hosts):
@@ -62,8 +70,8 @@ def add(connection, name, control_file, control_type, hosts):
 
     priority = arc.constants.JOB_PRIORITIES[1]
 
-    return connection.run(ADD_METHOD, name, priority, control_file,
-                          control_type, hosts)
+    return connection.run(SERVICE_NAME, ADD_METHOD, name, priority,
+                          control_file, control_type, hosts)
 
 
 def add_complete(connection,
@@ -128,11 +136,11 @@ def add_complete(connection,
     if (type(hosts) == str):
         hosts = hosts.split(' ')
 
-    return connection.run(ADD_METHOD, name, priority, control_file,
-                          control_type, hosts, profiles, meta_hosts,
-                          one_time_hosts, atomic_group_name, synch_count,
-                          is_template, timeout, max_runtime_hrs, run_verify,
-                          email_list, dependencies, reboot_before,
+    return connection.run(SERVICE_NAME, ADD_METHOD, name, priority,
+                          control_file, control_type, hosts, profiles,
+                          meta_hosts, one_time_hosts, atomic_group_name,
+                          synch_count, is_template, timeout, max_runtime_hrs,
+                          run_verify, email_list, dependencies, reboot_before,
                           reboot_after, parse_failed_repair, hostless,
                           keyvals, drone_set)
 
@@ -144,7 +152,9 @@ def delete(connection, numeric_id):
     :param connection:
     :param numeric_id:
     """
-    return connection.run("abort_host_queue_entries", job=numeric_id)
+    return connection.run(SERVICE_NAME,
+                          "abort_host_queue_entries",
+                          job=numeric_id)
 
 
 class Job(arc.base.Model):
