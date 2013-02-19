@@ -113,8 +113,8 @@ ACTION_ADD = (('-a', '--add'),
 
 ACTION_DELETE = (('-d', '--delete'),
                  {'help': 'delete (abort) a queued or running job',
-                  'action': 'store_true',
-                  'default': False})
+                  'default': False,
+                  'metavar': 'JOB_ID'})
 
 
 #

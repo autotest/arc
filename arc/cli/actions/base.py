@@ -93,15 +93,20 @@ def delete_by_id(name, klass, delete_function, app):
     :param delete_function: the function that will be used to delete records
     :param app: the running application instance
     """
-    if not app.parsed_arguments.id:
+    try:
+        object_id = int(app.parsed_arguments.delete)
+    except ValueError:
+        object_id = app.parsed_arguments.id
+
+    if not object_id:
         app.log.error("Can not delete a %s without an id", name)
         return
 
     i = klass(app.connection,
-              identification=app.parsed_arguments.id)
+              identification=object_id)
     if not i.load_data():
         app.log.error("Could not find %s with id %s", name,
-                      app.parsed_arguments.id)
+                      object_id)
         return
 
     return delete_function(app.connection, i.identification)
