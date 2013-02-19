@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(name='arc',
-      version='0.0.1',
+      version='0.0.2',
       description='Autotest RPC Client',
       author='Cleber Rosa',
       author_email='<cleber@redhat.com>',

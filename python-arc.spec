@@ -5,7 +5,7 @@
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.0.1
+Version: 0.0.2
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
@@ -44,6 +44,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Tue Feb 19 2013 Cleber <cleber@redhat.com> - 0.0.2-1
+- Updated to version 0.0.2
+
 * Tue Oct 16 2012 Cleber Rosa <cleber@redhat.com> - python-arc.0.0.0-1
 - Initial build.
 
