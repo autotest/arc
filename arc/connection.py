@@ -31,6 +31,13 @@ class RpcAuthError(Exception):
     pass
 
 
+class InvalidProxyError(Exception):
+    """
+    Invalid proxy for selected service
+    """
+    pass
+
+
 class BaseConnection(object):
     """
     Base RPC connection
@@ -52,6 +59,9 @@ class BaseConnection(object):
         if path is None:
             path = arc.defaults.RPC_PATH
 
+        self.services = {}
+        self.service_proxies = {}
+
         try:
             self.proxy = self._connect(path)
         except RpcAuthError:
@@ -69,7 +79,7 @@ class BaseConnection(object):
         return arc.jsonrpc.ServiceProxy(rpc_uri, headers=headers)
 
 
-    def run(self, operation, *args, **data):
+    def run(self, service, operation, *args, **data):
         """
         Runs a method using the rpc proxy
 
@@ -80,9 +90,24 @@ class BaseConnection(object):
         :param args: positional arguments to be passed to the RPC method
         :param data: keyword arguments to be passed to the RPC method
         """
-        function = getattr(self.proxy, operation)
+        proxy = self.service_proxies.get(service, None)
+        if proxy is None:
+            raise InvalidProxyError
+
+        function = getattr(proxy, operation)
         result = function(*args, **data)
         return result
+
+
+    def add_service(self, name, path):
+        """
+        Add a service to a connection
+
+        :param name: a descriptive name to the service
+        :param path: the path in the URI that hosts the service
+        """
+        self.services[name] = path
+        self.service_proxies[name] = self._connect(path)
 
 
     def ping(self):
@@ -93,43 +118,21 @@ class BaseConnection(object):
         return result == True
 
 
-class AfeConnection(BaseConnection):
+class Connection(BaseConnection):
     """
-    A connection to the AFE service
+    The default connection that allows access to both AFE and TKO services
 
     :param hostname: the IP address or hostname of the server that will be
            contacted upon RPC method execution.
-    :param path: the base URI where the server is running the AFE service
     """
-    def __init__(self,
-                 hostname=None,
-                 port=None,
-                 path=arc.defaults.AFE_RPC_PATH):
-        super(AfeConnection, self).__init__(hostname, port, path)
-
-
-#: Connection is an alias to AfeConnection, since it's the most used service
-Connection = AfeConnection
-
-
-class TkoConnection(BaseConnection):
-    """
-    A connection to the TKO service
-
-    :param hostname: the IP address or hostname of the server that will be
-           contacted upon RPC method execution.
-    :param path: the base URI where the server is running the TKO service
-
-    """
-    def __init__(self,
-                 hostname=None,
-                 port=None,
-                 path=arc.defaults.TKO_RPC_PATH):
-        super(TkoConnection, self).__init__(hostname, port, path)
+    def __init__(self, hostname=None, port=None):
+        super(Connection, self).__init__(hostname, port)
+        self.add_service('afe', arc.defaults.AFE_RPC_PATH)
+        self.add_service('tko', arc.defaults.TKO_RPC_PATH)
 
 
 #: Global, default connection to an AFE service for ease of use by apps
-AFE_CONNECTION = None
+CONNECTION = None
 
 
 def get_default():
@@ -138,9 +141,9 @@ def get_default():
 
     :returns: an arc.connection.AfeConnection instance
     """
-    global AFE_CONNECTION
+    global CONNECTION
 
-    if AFE_CONNECTION is None:
-        AFE_CONNECTION = AfeConnection()
+    if CONNECTION is None:
+       CONNECTION = Connection()
 
-    return AFE_CONNECTION
+    return CONNECTION

@@ -12,17 +12,20 @@ __all__ = ['get_by',
            'Model']
 
 
-def get_data(method, connection, **data_filter):
+import arc.defaults
+
+
+def get_data(service, method, connection, **data_filter):
     """
     Base function to fetch data from the RPC server
 
     This is usually not used directly, but simplified via
     :func:`functools.partial`
     """
-    return connection.run(method, **data_filter)
+    return connection.run(service, method, **data_filter)
 
 
-def get_by(method, field, connection, value=None):
+def get_by(service, method, field, connection, value=None):
     """
     Base function to fetch data from the RPC server using a single field filter
 
@@ -30,7 +33,7 @@ def get_by(method, field, connection, value=None):
     :func:`functools.partial`
     """
     data_filter = {field: value}
-    data = connection.run(method, **data_filter)
+    data = connection.run(service, method, **data_filter)
     if len(data) == 1:
         return data[0]
     return None
@@ -71,14 +74,14 @@ def get_objs(function, klass, connection, **data_filter):
                     name=name)
 
 
-def delete(method, connection, identification):
+def delete(service, method, connection, identification):
     """
     Base function to delete an object from the RPC server
 
     This is usually not used directly, but simplified via
     :func:`functools.partial`
     """
-    return connection.run(method, identification)
+    return connection.run(service, method, identification)
 
 
 class Model(object):

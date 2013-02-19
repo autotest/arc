@@ -24,6 +24,12 @@ __all__ = ['get_data',
 
 
 #
+# Service on RPC server hosting these methods
+#
+SERVICE_NAME = arc.defaults.AFE_SERVICE_NAME
+
+
+#
 # Name of fields as defined on the server side database
 #
 ID_FIELD = 'id'
@@ -42,14 +48,16 @@ MODIFY_METHOD = 'modify_host'
 #
 # Boiler plate code for remote methods that are generic enough to be reused
 #
-get_data = functools.partial(arc.base.get_data, GET_METHOD)
+get_data = functools.partial(arc.base.get_data, SERVICE_NAME, GET_METHOD)
 get_ids = functools.partial(arc.base.get_and_filter, get_data, ID_FIELD)
 get_names = functools.partial(arc.base.get_and_filter, get_data, NAME_FIELD)
 get_ids_names = functools.partial(arc.base.get_id_name_and_filter, get_data,
                                   ID_FIELD, NAME_FIELD)
-get_data_by_id = functools.partial(arc.base.get_by, GET_METHOD, ID_FIELD)
-get_data_by_name = functools.partial(arc.base.get_by, GET_METHOD, NAME_FIELD)
-delete = functools.partial(arc.base.delete, DELETE_METHOD)
+get_data_by_id = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                   ID_FIELD)
+get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                     NAME_FIELD)
+delete = functools.partial(arc.base.delete, SERVICE_NAME, DELETE_METHOD)
 
 
 #
@@ -66,7 +74,8 @@ def add(connection, name, status=None, locked=None, protection=None):
     :param protection:
     :return: integer that is the identification of the newly added host
     """
-    return connection.run(ADD_METHOD, name, status, locked, protection)
+    return connection.run(SERVICE_NAME, ADD_METHOD,
+                          name, status, locked, protection)
 
 
 def modify(connection, identification, **data):
@@ -77,7 +86,8 @@ def modify(connection, identification, **data):
     :param identification:
     :param data:
     """
-    return connection.run(MODIFY_METHOD, identification, **data)
+    return connection.run(SERVICE_NAME, MODIFY_METHOD,
+                          identification, **data)
 
 
 class Host(arc.base.Model):
@@ -92,7 +102,9 @@ class Host(arc.base.Model):
 
 
     def __init__(self, connection, identification=None, name=None):
-        super(Host, self).__init__(connection, identification, name)
+        super(Host, self).__init__(connection,
+                                   identification,
+                                   name)
 
 
     def _get_data_by_id(self):
@@ -122,7 +134,9 @@ class Host(arc.base.Model):
         return "<Host Name: %s>" % self.name
 
 
-get_objs = functools.partial(arc.base.get_objs, get_ids_names, Host)
+get_objs = functools.partial(arc.base.get_objs,
+                             get_ids_names,
+                             Host)
 
 
 def parse_meta_host_labels(connection, label):
