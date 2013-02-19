@@ -22,7 +22,8 @@ def list_brief(app):
     """
     Lists briefly the jobs run and/or running on this server
     """
-    return _list_brief(app, running=app.parsed_arguments.running)
+    running = not app.parsed_arguments.all
+    return _list_brief(app, running=running)
 
 
 def add(app):

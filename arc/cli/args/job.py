@@ -97,8 +97,8 @@ ARG_REBOOT_AFTER = (('-A', '--reboot-after'),
                      'config_section': 'job',
                      'config_key': 'reboot_after'})
 
-ARG_RUNNING = (('--running',),
-               {'help': 'limit action only to jobs that are currently running',
+ARG_RUNNING = (('--all',),
+               {'help': 'show all jobs, not only currently running jobs',
                 'action': 'store_true',
                 'default': False})
 
