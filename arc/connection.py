@@ -127,8 +127,10 @@ class Connection(BaseConnection):
     """
     def __init__(self, hostname=None, port=None):
         super(Connection, self).__init__(hostname, port)
-        self.add_service('afe', arc.defaults.AFE_RPC_PATH)
-        self.add_service('tko', arc.defaults.TKO_RPC_PATH)
+        self.add_service(arc.defaults.AFE_SERVICE_NAME,
+                         arc.defaults.AFE_RPC_PATH)
+        self.add_service(arc.defaults.TKO_SERVICE_NAME,
+                         arc.defaults.TKO_RPC_PATH)
 
 
 #: Global, default connection to an AFE service for ease of use by apps

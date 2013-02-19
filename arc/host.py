@@ -2,7 +2,6 @@
 Module with interface for fetching and manipulating hosts on a autotest server
 """
 
-
 import re
 import functools
 
