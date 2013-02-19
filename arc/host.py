@@ -7,6 +7,7 @@ import functools
 
 import arc.base
 import arc.defaults
+import arc.label
 
 
 __all__ = ['get_data',
@@ -118,8 +119,8 @@ class Host(arc.base.Model):
         """
         Get raw data on this host's labels
         """
-        return self.connection.run("get_labels",
-                                   host__id=self.identification)
+        return arc.label.get_data(self.connection,
+                                  host__id=self.identification)
 
 
     def get_label_names(self):
