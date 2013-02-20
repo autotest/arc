@@ -8,6 +8,7 @@ import functools
 
 import arc.cli.actions.base
 import arc.host
+import arc.defaults
 
 
 OBJ_NAME = "host"
@@ -40,7 +41,8 @@ def list_jobs(app):
     line_fmt = "%-6s%-34s%-8s%-80s"
     header = line_fmt % ("ID", "NAME", "JOB ID", "JOB NAME")
     header_printed = False
-    queue = app.connection.run('get_host_queue_entries', active=True)
+    queue = app.connection.run(arc.defaults.AFE_SERVICE_NAME,
+                               'get_host_queue_entries', active=True)
     hosts = arc.host.get_objs(app.connection)
     for h in hosts:
         if not header_printed:
