@@ -157,6 +157,12 @@ class App(object):
         elif (hasattr(self.parsed_arguments, 'list_jobs') and
               self.parsed_arguments.list_jobs):
             action = 'list_jobs'
+        elif (hasattr(self.parsed_arguments, 'lock') and
+              self.parsed_arguments.lock):
+            action = 'lock'
+        elif (hasattr(self.parsed_arguments, 'unlock') and
+              self.parsed_arguments.unlock):
+            action = 'unlock'
 
 
         if hasattr(module, action):

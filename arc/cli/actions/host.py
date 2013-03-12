@@ -55,3 +55,27 @@ def list_jobs(app):
                           h.name,
                           job_id,
                           job_name))
+
+
+def lock(app):
+    '''
+    Locks the chosen host
+
+    :param app: the running application instance
+    '''
+    if app.parsed_arguments.name:
+        arc.host.modify(app.connection,
+                        app.parsed_arguments.name,
+                        locked=True)
+
+
+def unlock(app):
+    '''
+    Unlocks the chosen host
+
+    :param app: the running application instance
+    '''
+    if app.parsed_arguments.name:
+        arc.host.modify(app.connection,
+                        app.parsed_arguments.name,
+                        locked=False)
