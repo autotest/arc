@@ -136,11 +136,12 @@ def add_complete(connection,
     if (type(hosts) == str):
         hosts = hosts.split(' ')
 
-    return connection.run(SERVICE_NAME, ADD_METHOD, name, priority,
-                          control_file, control_type, hosts, profiles,
-                          meta_hosts, one_time_hosts, atomic_group_name,
-                          synch_count, is_template, timeout, max_runtime_hrs,
-                          run_verify, email_list, dependencies, reboot_before,
+    return connection.run(SERVICE_NAME, ADD_METHOD,
+                          name, priority, control_file, control_type,
+                          hosts, profiles, meta_hosts, one_time_hosts,
+                          atomic_group_name, synch_count, is_template,
+                          timeout, max_runtime_hrs, run_verify,
+                          email_list, dependencies, reboot_before,
                           reboot_after, parse_failed_repair, hostless,
                           keyvals, drone_set)
 
