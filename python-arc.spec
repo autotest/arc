@@ -5,13 +5,12 @@
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.0.2
-Release: 2%{?dist}
+Version: 0.2.0
+Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
 URL: http://autotest.github.com
 BuildArch: noarch
-#Source0: %{name}-%{version}.tar.gz
 Source0: %{shortname}-%{version}.tar.gz
 BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 BuildRequires: python >= 2.7
@@ -41,10 +40,12 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/arc.conf
 %{python_sitelib}/arc
 %{_bindir}/arcli
-%doc
 
 
 %changelog
+* Thu Jul 18 2013 Cleber Rosa <cleber@redhat.com> - 0.2.0-1
+- Updated to version 0.2.0
+
 * Tue Feb 19 2013 Cleber Rosa <cleber@redhat.com> - 0.0.2-2
 - Replaced python commands for respective macros
 - Add python as a build time requirement
