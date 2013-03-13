@@ -19,6 +19,7 @@ __all__ = ['get_data',
            'add',
            'delete',
            'modify',
+           'reverify',
            'Host',
            'get_objs']
 
@@ -88,6 +89,11 @@ def modify(connection, identification, **data):
     """
     return connection.run(SERVICE_NAME, MODIFY_METHOD,
                           identification, **data)
+
+
+def reverify(connection, identification):
+    data = {'hostname': identification}
+    return connection.run(SERVICE_NAME, 'reverify_hosts', **data)
 
 
 class Host(arc.base.Model):

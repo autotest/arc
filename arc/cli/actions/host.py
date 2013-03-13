@@ -79,3 +79,14 @@ def unlock(app):
         arc.host.modify(app.connection,
                         app.parsed_arguments.name,
                         locked=False)
+
+
+def reverify(app):
+    '''
+    Schedules a reverification for the chosen host
+
+    :param app: the running application instance
+    '''
+    if app.parsed_arguments.name:
+        arc.host.reverify(app.connection,
+                          app.parsed_arguments.name)

@@ -32,6 +32,7 @@ ARG_LIST_JOBS = (('-j', '--list-jobs'),
                   'action': 'store_true',
                   'default': False})
 
+
 ARG_LOCK = (('-L', '--lock'),
             {'help': 'locks the host (make it unavailable to new jobs)',
              'action': 'store_true'})
@@ -41,12 +42,19 @@ ARG_UNLOCK = (('-U', '--unlock'),
               {'help': 'unlocks the host (make it available to new jobs)',
                'action': 'store_true'})
 
+
+ARG_REVERIFY = (('-r', '--reverify'),
+                {'help': 'schedules a reverification for the host',
+                 'action': 'store_true'})
+
+
 ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
                     ARG_LIST_JOBS,
                     arc.cli.args.base.ADD,
                     arc.cli.args.base.DELETE,
                     ARG_LOCK,
-                    ARG_UNLOCK]
+                    ARG_UNLOCK,
+                    ARG_REVERIFY]
 
 
 #

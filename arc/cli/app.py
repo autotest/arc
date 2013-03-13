@@ -163,7 +163,9 @@ class App(object):
         elif (hasattr(self.parsed_arguments, 'unlock') and
               self.parsed_arguments.unlock):
             action = 'unlock'
-
+        elif (hasattr(self.parsed_arguments, 'reverify') and
+              self.parsed_arguments.reverify):
+            action = 'reverify'
 
         if hasattr(module, action):
             self.log.debug("Calling action %s from module %s",
