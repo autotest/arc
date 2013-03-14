@@ -108,7 +108,7 @@ class Parser(argparse.ArgumentParser):
             )
 
         self.config = config
-        self._subpasers = None
+        self._subparsers = None
         self._add_global_arguments()
 
 
