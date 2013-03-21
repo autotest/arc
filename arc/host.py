@@ -96,6 +96,11 @@ def reverify(connection, identification):
     return connection.run(SERVICE_NAME, 'reverify_hosts', **data)
 
 
+def add_labels(connection, identification, labels_identification):
+    connection.run(SERVICE_NAME, 'host_add_labels',
+                   identification, labels_identification)
+
+
 class Host(arc.base.Model):
     """
     Interface for manipulating hosts on an autotest server
