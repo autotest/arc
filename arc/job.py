@@ -82,6 +82,7 @@ def add_complete(connection,
                  hosts=(),
                  profiles=(),
                  meta_hosts=(),
+                 meta_host_profiles=[],
                  one_time_hosts=(),
                  atomic_group_name=None,
                  synch_count=None,
@@ -96,7 +97,8 @@ def add_complete(connection,
                  parse_failed_repair=None,
                  hostless=False,
                  keyvals=None,
-                 drone_set=None):
+                 drone_set=None,
+                 reserve_hosts=False):
     """
     Create and enqueue a job.
 
@@ -138,12 +140,12 @@ def add_complete(connection,
 
     return connection.run(SERVICE_NAME, ADD_METHOD,
                           name, priority, control_file, control_type,
-                          hosts, profiles, meta_hosts, one_time_hosts,
-                          atomic_group_name, synch_count, is_template,
-                          timeout, max_runtime_hrs, run_verify,
+                          hosts, profiles, meta_hosts, meta_host_profiles,
+                          one_time_hosts, atomic_group_name, synch_count,
+                          is_template, timeout, max_runtime_hrs, run_verify,
                           email_list, dependencies, reboot_before,
                           reboot_after, parse_failed_repair, hostless,
-                          keyvals, drone_set)
+                          keyvals, drone_set, reserve_hosts)
 
 
 def delete(connection, numeric_id):
