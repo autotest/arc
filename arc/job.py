@@ -65,13 +65,10 @@ def add(connection, name, control_file, control_type, hosts):
 
     :returns: The created Job id number.
     """
-    if (type(hosts) == str):
-        hosts = hosts.split(' ')
-
     priority = arc.constants.JOB_PRIORITIES[1]
 
-    return connection.run(SERVICE_NAME, ADD_METHOD, name, priority,
-                          control_file, control_type, hosts)
+    return add_complete(connection, name, priority, control_file, control_type,
+                        hosts)
 
 
 def add_complete(connection,
