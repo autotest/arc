@@ -114,8 +114,11 @@ class BaseConnection(object):
         """
         Tests connectivity to the RPC server
         """
-        result = self.run("ping")
-        return result == True
+        try:
+            result = self.run(arc.defaults.AFE_SERVICE_NAME, "get_server_time")
+        except:
+            return False
+        return True
 
 
 class Connection(BaseConnection):
