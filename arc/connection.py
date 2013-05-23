@@ -61,6 +61,7 @@ class BaseConnection(object):
 
         self.services = {}
         self.service_proxies = {}
+        self.service_interface_versions = {}
 
         try:
             self.proxy = self._connect(path)
@@ -108,6 +109,11 @@ class BaseConnection(object):
         """
         self.services[name] = path
         self.service_proxies[name] = self._connect(path)
+        try:
+            api_version = self.run(name, "get_interface_version")
+        except:
+            api_version = None
+        self.service_interface_versions[name] = api_version
 
 
     def ping(self):
