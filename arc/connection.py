@@ -18,6 +18,7 @@ import arc.jsonrpc
 
 
 #: Minimum required version of server side API
+MIN_REQUIRED_VERSION = {}
 MIN_REQUIRED_VERSION[arc.defaults.AFE_SERVICE_NAME] = (2013, 05, 23)
 MIN_REQUIRED_VERSION[arc.defaults.TKO_SERVICE_NAME] = (2013, 05, 23)
 
@@ -39,6 +40,13 @@ class RpcAuthError(Exception):
 class InvalidProxyError(Exception):
     """
     Invalid proxy for selected service
+    """
+    pass
+
+
+class InvalidServiceVersionError(Exception):
+    """
+    The service version does not satisfy the minimum required version
     """
     pass
 
@@ -115,10 +123,31 @@ class BaseConnection(object):
         self.services[name] = path
         self.service_proxies[name] = self._connect(path)
         try:
-            api_version = self.run(name, "get_interface_version")
+            api_version = tuple(self.run(name, "get_interface_version"))
         except:
             api_version = None
         self.service_interface_versions[name] = api_version
+
+        if not self.check_min_rpc_interface_version(name):
+            raise InvalidServiceVersionError
+
+
+    def check_min_rpc_interface_version(self, service_name):
+        """
+        Checks the minimum required RPC interface version
+
+        :param service_name: the registered name of the service
+        """
+        min_version = MIN_REQUIRED_VERSION.get(service_name, None)
+        if min_version is None:
+            return True
+
+        current_version = self.service_interface_versions.get(service_name,
+                                                              None)
+        if current_version is None:
+            return True
+
+        return current_version >= min_version
 
 
     def ping(self):
