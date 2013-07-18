@@ -112,10 +112,15 @@ class App(object):
             if hasattr(self.parsed_arguments, "host"):
                 h = self.parsed_arguments.host
                 self.log.debug("Connecting to: %s", h)
-                self.connection = arc.connection.Connection(h)
-                #if not self.connection.ping():
-                #    self.log.error("Could not validate connection to server")
-                #    raise SystemExit
+                try:
+                    self.connection = arc.connection.Connection(h)
+                except arc.connection.InvalidServiceVersionError:
+                    self.log.error("The RPC interface version on the connected "
+                                   "server is more recent than this version of "
+                                   "arc can support. Please use a more recent "
+                                   "version of arc that should include support "
+                                   "for the latest Autotest version.")
+                    raise SystemExit
             else:
                 self.log.warn("Host setting not present on arguments, not "
                               "initializing a connection")
