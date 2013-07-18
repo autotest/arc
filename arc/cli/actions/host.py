@@ -14,18 +14,22 @@ import arc.defaults
 OBJ_NAME = "host"
 
 
-list_brief = functools.partial(arc.cli.actions.base.list_brief,
-                               arc.host.get_objs)
+list_brief = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.list_brief,
+                      arc.host.get_objs))
 
 
-add = functools.partial(arc.cli.actions.base.add_with_name,
-                        OBJ_NAME, arc.host.add)
+add = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.add_with_name,
+                      OBJ_NAME, arc.host.add))
 
 
-delete = functools.partial(arc.cli.actions.base.delete,
-                           OBJ_NAME, arc.host.Host, arc.host.delete)
+delete = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.delete,
+                      OBJ_NAME, arc.host.Host, arc.host.delete))
 
 
+@arc.cli.actions.base.action
 def list_jobs(app):
     """
     List host and jobs currently running on them
@@ -57,6 +61,7 @@ def list_jobs(app):
                           job_name))
 
 
+@arc.cli.actions.base.action
 def lock(app):
     '''
     Locks the chosen host
@@ -69,6 +74,7 @@ def lock(app):
                         locked=True)
 
 
+@arc.cli.actions.base.action
 def unlock(app):
     '''
     Unlocks the chosen host
@@ -81,6 +87,7 @@ def unlock(app):
                         locked=False)
 
 
+@arc.cli.actions.base.action
 def reverify(app):
     '''
     Schedules a reverification for the chosen host

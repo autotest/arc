@@ -12,9 +12,11 @@ import arc.test
 OBJ_NAME = "test"
 
 
-list_brief = functools.partial(arc.cli.actions.base.list_brief,
-                               arc.test.get_objs)
+list_brief = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.list_brief,
+                      arc.test.get_objs))
 
 
-delete = functools.partial(arc.cli.actions.base.delete,
-                           OBJ_NAME, arc.test.Test, arc.test.delete)
+delete = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.delete,
+                      OBJ_NAME, arc.test.Test, arc.test.delete))

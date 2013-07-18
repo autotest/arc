@@ -6,7 +6,17 @@ simplified via :func:`functools.partial`
 """
 
 
-__all__ = ['list_brief', 'add_with_name', 'delete']
+__all__ = ['list_brief', 'add_with_name', 'delete', 'action']
+
+
+def action(function):
+    """
+    Simple function that marks functions as CLI actions
+
+    :param function: the function that will receive the CLI action mark
+    """
+    function.is_action = True
+    return function
 
 
 def list_brief(list_function, app, **filter_data):
@@ -44,7 +54,6 @@ def add_with_name(name, add_function, app):
         return None
 
     return add_function(app.connection, app.parsed_arguments.name)
-
 
 def delete(name, klass, delete_function, app):
     """

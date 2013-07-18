@@ -18,6 +18,7 @@ _list_brief = functools.partial(arc.cli.actions.base.list_brief,
                                 arc.job.get_objs)
 
 
+@arc.cli.actions.base.action
 def list_brief(app):
     """
     Lists briefly the jobs run and/or running on this server
@@ -26,6 +27,7 @@ def list_brief(app):
     return _list_brief(app, running=running)
 
 
+@arc.cli.actions.base.action
 def add(app):
     """
     Add (create) a new job
@@ -61,5 +63,6 @@ def add(app):
     app.log.info("Job creation: %s", result)
 
 
-delete = functools.partial(arc.cli.actions.base.delete_by_id,
-                           OBJ_NAME, arc.job.Job, arc.job.delete)
+delete = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.delete_by_id,
+                      OBJ_NAME, arc.job.Job, arc.job.delete))

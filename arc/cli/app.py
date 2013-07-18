@@ -6,8 +6,10 @@ This is the main entry point for the ARC cli application
 """
 
 
+import types
 import logging
 import importlib
+import functools
 
 import arc.config
 import arc.connection
@@ -143,43 +145,32 @@ class App(object):
             self.log.critical("Could not load action module: %s", module_name)
             return
 
-        # FIXME: this needs a better instrospection of the action arguments
-        # exclusive group, so that all action arguments are picked up here
-        # make list the default action
-        action = 'list_brief'
-        if (hasattr(self.parsed_arguments, 'list_brief') and
-            self.parsed_arguments.list_brief):
-            action = 'list_brief'
-        elif (hasattr(self.parsed_arguments, 'add') and
-              self.parsed_arguments.add):
-            action = 'add'
-        elif (hasattr(self.parsed_arguments, 'delete') and
-              self.parsed_arguments.delete):
-            action = 'delete'
-        elif (hasattr(self.parsed_arguments, 'modify') and
-              self.parsed_arguments.modify):
-            action = 'modify'
-        elif (hasattr(self.parsed_arguments, 'list_jobs') and
-              self.parsed_arguments.list_jobs):
-            action = 'list_jobs'
-        elif (hasattr(self.parsed_arguments, 'lock') and
-              self.parsed_arguments.lock):
-            action = 'lock'
-        elif (hasattr(self.parsed_arguments, 'unlock') and
-              self.parsed_arguments.unlock):
-            action = 'unlock'
-        elif (hasattr(self.parsed_arguments, 'reverify') and
-              self.parsed_arguments.reverify):
-            action = 'reverify'
+        # Filter out the attributes out of the loaded module that look
+        # like command line actions, based on type and 'is_action' attribute
+        module_actions = {}
+        for attribute_name in module.__dict__:
+            attribute = module.__dict__[attribute_name]
+            if (isinstance(attribute, types.FunctionType) or
+                isinstance(attribute, functools.partial)):
+                if hasattr(attribute, 'is_action'):
+                    if attribute.is_action:
+                        module_actions[attribute_name] = attribute
 
-        if hasattr(module, action):
-            self.log.debug("Calling action %s from module %s",
-                           action, module_name)
-            kallable = getattr(module, action)
+        chosen_action = None
+        for action in module_actions.keys():
+            if getattr(self.parsed_arguments, action, False):
+                self.log.debug("Calling action %s from module %s",
+                               action, module_name)
+                chosen_action = action
+                break
+
+        kallable = module_actions.get(chosen_action, None)
+        if kallable is not None:
             self.initialize_connection()
             kallable(self)
         else:
-            self.log.error("Action %s specified, but not implemented", action)
+            self.log.error("Action %s specified, but not implemented",
+                           chosen_action)
 
 
     def run(self):
