@@ -27,7 +27,7 @@ TKO_RPC_PATH = '/new_tko/server/rpc/'
 #: The default host to connect to
 SERVER_HOST = 'localhost'
 #: The default port to connect to
-SERVER_HOST = 80
+SERVER_PORT = 80
 
 #: Python namespace prefix for CLI arguments
 ARGS_MODULE_PREFIX = 'arc.cli.args'
