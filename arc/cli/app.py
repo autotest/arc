@@ -1,6 +1,3 @@
-#!/usr/bin/env/python
-
-
 """
 This is the main entry point for the ARC cli application
 """
