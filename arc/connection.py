@@ -19,8 +19,8 @@ import arc.jsonrpc
 
 #: Minimum required version of server side API
 MIN_REQUIRED_VERSION = {}
-MIN_REQUIRED_VERSION[arc.defaults.AFE_SERVICE_NAME] = (2013, 05, 23)
-MIN_REQUIRED_VERSION[arc.defaults.TKO_SERVICE_NAME] = (2013, 05, 23)
+MIN_REQUIRED_VERSION[arc.defaults.AFE_SERVICE_NAME] = (2013, 5, 23)
+MIN_REQUIRED_VERSION[arc.defaults.TKO_SERVICE_NAME] = (2013, 5, 23)
 
 
 class AuthError(Exception):
