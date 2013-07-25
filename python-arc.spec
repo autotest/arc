@@ -1,11 +1,11 @@
 %define shortname arc
-%global commit 6a362442cc0cb05fef73ea6e4b157035ed097dc8
+%global commit 59353d5aeb2a39b97e98a4c67d8b414ec507f1c4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.2.0
-Release: 2%{?dist}
+Version: 0.3.0
+Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
 URL: http://github.com/clebergnu/arc
@@ -37,6 +37,9 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 %{_bindir}/arcli
 
 %changelog
+* Thu Jul 25 2013 Cleber Rosa <cleber@redhat.com> - 0.3.0-1
+- Updated to version 0.3.0
+
 * Thu Jul 25 2013 Cleber Rosa <cleber@redhat.com> - 0.2.0-2
 - Followed suggestions from Fedora package review
 
