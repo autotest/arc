@@ -1,48 +1,45 @@
 %define shortname arc
-%if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
-%endif
+%global commit 6a362442cc0cb05fef73ea6e4b157035ed097dc8
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
 Version: 0.2.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPLv2
 Group: Development/Libraries
-URL: http://autotest.github.com
+URL: http://github.com/clebergnu/arc
 BuildArch: noarch
-Source0: %{shortname}-%{version}.tar.gz
-BuildRoot: %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
-BuildRequires: python >= 2.7
-Requires: python >= 2.7
+Source0: https://github.com/clebergnu/%{shortname}/archive/%{commit}/%{shortname}-%{version}-%{shortcommit}.tar.gz
+BuildRequires: python2-devel
+Requires: python
 
 %description
-Arc is the Autotest RPC Client, a library and command line API for controlling an Autotest RPC Server.
-
-It allows one to send test jobs, add machine hosts, etc.
+Arc is the Autotest RPC Client. It provides libraries and tools that interact
+with an Autotest RPC Server. It allows one to send test jobs, add test hosts,
+query available tests, etc.
 
 %prep
-%setup -q -n %{shortname}-%{version}
+%setup -q -n %{shortname}-%{commit}
+rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 
 %build
 %{__python} setup.py build
 
 %install
-rm -rf %{buildroot}
 %{__python} setup.py install --root %{buildroot} --skip-build
-rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
-
-%clean
-rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root,-)
 %config(noreplace) %{_sysconfdir}/arc.conf
+%doc README.md
 %{python_sitelib}/arc
+%{python_sitelib}/arc-*.egg-info
 %{_bindir}/arcli
 
-
 %changelog
+* Thu Jul 25 2013 Cleber Rosa <cleber@redhat.com> - 0.2.0-2
+- Followed suggestions from Fedora package review
+
 * Thu Jul 18 2013 Cleber Rosa <cleber@redhat.com> - 0.2.0-1
 - Updated to version 0.2.0
 
