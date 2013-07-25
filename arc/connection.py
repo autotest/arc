@@ -14,7 +14,7 @@ import os
 
 import arc.config
 import arc.defaults
-import arc.jsonrpc
+import arc.proxy
 
 
 #: Minimum required version of server side API
@@ -88,9 +88,8 @@ class BaseConnection(object):
 
         :param path: the URI path where the service is hosted
         """
-        headers = {'AUTHORIZATION': os.environ.get('USER', 'debug_user')}
         rpc_uri = "http://%s:%s%s" % (self.hostname, self.port, path)
-        return arc.jsonrpc.ServiceProxy(rpc_uri, headers=headers)
+        return arc.proxy.Proxy(rpc_uri)
 
 
     def run(self, service, operation, *args, **data):
