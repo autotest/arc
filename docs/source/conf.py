@@ -21,8 +21,6 @@ copyright = _COPYRIGHT
 version = '%s.%s' % (arc.version.MAJOR, arc.version.MINOR)
 release = arc.version.VERSION
 
-man_pages = [ ('arcli', 'arcli', u'Arc command line tool', [_AUTHOR], 1) ]
-
 latex_documents = [
   ('index', 'arc.tex', _TITLE,
    _AUTHOR, 'manual'),
