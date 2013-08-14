@@ -33,7 +33,8 @@ ARG_NAME = (('-n', '--name'),
             {'help': 'name of the job to manipulated'})
 
 ARG_ID = (('-i', '--id'),
-            {'help': 'numeric ID of the job to manipulated'})
+          {'help': 'numeric ID of the job to manipulated',
+           'type': int})
 
 ARG_CONTROL = (('-c', '--control-file'),
                {'help': 'path to the control file defining the job',

@@ -21,7 +21,8 @@ ARG_NAME = (('-n', '--name'),
 
 
 ARG_ID = (('-i', '--id'),
-          {'help': 'numeric identification of the label to manipulated'})
+          {'help': 'numeric identification of the label to manipulated',
+           'type': int})
 
 
 #

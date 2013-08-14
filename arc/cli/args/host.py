@@ -21,7 +21,8 @@ ARG_NAME = (('-n', '--name'),
 
 
 ARG_ID = (('-i', '--id'),
-          {'help': 'numeric identification of the host to manipulated'})
+          {'help': 'numeric identification of the host to manipulated',
+           'type': int})
 
 
 #

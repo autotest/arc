@@ -20,7 +20,8 @@ ARG_NAME = (('-n', '--name'),
 
 
 ARG_ID = (('-i', '--id'),
-          {'help': 'numeric identification of the test to manipulated'})
+          {'help': 'numeric identification of the test to manipulated',
+           'type': int})
 
 
 #
