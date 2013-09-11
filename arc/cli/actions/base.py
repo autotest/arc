@@ -6,7 +6,8 @@ simplified via :func:`functools.partial`
 """
 
 
-__all__ = ['list_brief', 'add_with_name', 'delete', 'action']
+__all__ = ['list_brief', 'add_with_name', 'delete', 'action',
+           'get_identification']
 
 
 def action(function):
@@ -119,3 +120,17 @@ def delete_by_id(name, klass, delete_function, app):
         return
 
     return delete_function(app.connection, i.identification)
+
+
+def get_identification(app):
+    '''
+    Get the identification from the command line opts, either name or id
+
+    :param app: the running application instance
+    '''
+    if app.parsed_arguments.name:
+        return app.parsed_arguments.name
+    elif app.parsed_arguments.id:
+        return app.parsed_arguments.id
+    else:
+        return None

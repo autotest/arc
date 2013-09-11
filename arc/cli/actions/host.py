@@ -68,10 +68,12 @@ def lock(app):
 
     :param app: the running application instance
     '''
-    if app.parsed_arguments.name:
-        arc.host.modify(app.connection,
-                        app.parsed_arguments.name,
-                        locked=True)
+    identification = arc.cli.actions.base.get_identification(app)
+    if identification is None:
+        logging.error('No host identification (name or id given)')
+        return
+
+    arc.host.modify(app.connection, identification, locked=True)
 
 
 @arc.cli.actions.base.action
@@ -81,10 +83,12 @@ def unlock(app):
 
     :param app: the running application instance
     '''
-    if app.parsed_arguments.name:
-        arc.host.modify(app.connection,
-                        app.parsed_arguments.name,
-                        locked=False)
+    identification = arc.cli.actions.base.get_identification(app)
+    if identification is None:
+        logging.error('No host identification (name or id given)')
+        return
+
+    arc.host.modify(app.connection, identification, locked=False)
 
 
 @arc.cli.actions.base.action
