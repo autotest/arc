@@ -17,11 +17,11 @@ __all__ = ['ARG_NAME',
 # Individual arguments that can be re-used elsewhere
 #
 ARG_NAME = (('-n', '--name'),
-            {'help': 'name (usually the FQDN) of the host to manipulated'})
+            {'help': 'name, usually the FQDN'})
 
 
 ARG_ID = (('-i', '--id'),
-          {'help': 'numeric identification of the host to manipulated',
+          {'help': 'numeric identification of the host',
            'type': int})
 
 
@@ -35,17 +35,17 @@ ARG_LIST_JOBS = (('-j', '--list-jobs'),
 
 
 ARG_LOCK = (('-L', '--lock'),
-            {'help': 'locks the host (make it unavailable to new jobs)',
+            {'help': 'locks the host (makes it unavailable to new jobs)',
              'action': 'store_true'})
 
 
 ARG_UNLOCK = (('-U', '--unlock'),
-              {'help': 'unlocks the host (make it available to new jobs)',
+              {'help': 'unlocks the host (makes it available to new jobs)',
                'action': 'store_true'})
 
 
 ARG_REVERIFY = (('-r', '--reverify'),
-                {'help': 'schedules a reverification for the host',
+                {'help': 'schedules a host reverification job',
                  'action': 'store_true'})
 
 
