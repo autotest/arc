@@ -11,7 +11,7 @@ Group: Development/Libraries
 URL: http://github.com/clebergnu/arc
 BuildArch: noarch
 Source0: https://github.com/clebergnu/%{shortname}/archive/%{commit}/%{shortname}-%{version}-%{shortcommit}.tar.gz
-BuildRequires: python2-devel, python-docutils
+BuildRequires: python2-devel, python-docutils, python-sphinx
 Requires: python
 
 %description
@@ -25,6 +25,7 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 
 %build
 %{__python} setup.py build
+%{__python} setup.py build_doc
 %{__python} man/manpage-writer man/arcli.rst man/build/arcli.1
 
 %install
@@ -35,6 +36,7 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 %files
 %config(noreplace) %{_sysconfdir}/arc.conf
 %doc README.md
+%doc build/sphinx/html/*
 %{python_sitelib}/arc
 %{python_sitelib}/arc-*.egg-info
 %{_mandir}/man1/arcli.1
