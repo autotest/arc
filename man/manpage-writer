@@ -5,6 +5,8 @@ Simple rst2man like utility that fetches information from arc source code
 to make it more automatically maintanable.
 """
 
+import os
+import sys
 import locale
 try:
     locale.setlocale(locale.LC_ALL, '')
@@ -13,6 +15,12 @@ except:
 
 from docutils.core import publish_cmdline, default_description
 from docutils.writers import manpage
+
+THIS_FILE = os.path.abspath(__file__)
+MAN_DIR = os.path.dirname(THIS_FILE)
+ARC_DIR = os.path.dirname(MAN_DIR)
+
+sys.path.insert(0, ARC_DIR)
 
 from arc.version import VERSION
 from cli_parser_extract import parser_to_rest_build_file

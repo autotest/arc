@@ -4,6 +4,13 @@ import os
 import sys
 import importlib
 
+THIS_FILE = os.path.abspath(__file__)
+MAN_DIR = os.path.dirname(THIS_FILE)
+BUILD_DIR = os.path.join(MAN_DIR, 'build')
+ARC_DIR = os.path.dirname(MAN_DIR)
+
+sys.path.insert(0, ARC_DIR)
+
 def get_module(name):
     '''
     Loads the given module and if found, returns it
@@ -57,13 +64,11 @@ def module_options_to_rest(module):
     return '\n'.join(result)
 
 def module_name_to_rest_build_file(name):
-    # FIXME: lookup this __file__ location
-    OUTPUT_DIR = 'build'
-    if not os.path.isdir(OUTPUT_DIR):
-        os.mkdir(OUTPUT_DIR)
+    if not os.path.isdir(BUILD_DIR):
+        os.mkdir(BUILD_DIR)
 
     output_file_name = 'cli_args_%s.txt' % name
-    output_file_path = os.path.join('build',
+    output_file_path = os.path.join(BUILD_DIR,
                                     output_file_name)
 
     module = get_module(name)

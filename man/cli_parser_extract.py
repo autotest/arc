@@ -5,6 +5,13 @@ import sys
 import argparse
 import StringIO
 
+THIS_FILE = os.path.abspath(__file__)
+MAN_DIR = os.path.dirname(THIS_FILE)
+BUILD_DIR = os.path.join(MAN_DIR, 'build')
+ARC_DIR = os.path.dirname(MAN_DIR)
+
+sys.path.insert(0, ARC_DIR)
+
 import arc.cli.args.parser
 
 class DummyParser(arc.cli.args.parser.Parser):
@@ -69,17 +76,15 @@ def parser_subcommand_to_rest(command):
     return rest
 
 def parser_to_rest_build_file(command=None):
-    # FIXME: lookup this __file__ location
-    OUTPUT_DIR = 'build'
-    if not os.path.isdir(OUTPUT_DIR):
-        os.mkdir(OUTPUT_DIR)
+    if not os.path.isdir(BUILD_DIR):
+        os.mkdir(BUILD_DIR)
 
     if command is None:
         output_file_name = 'cli_usage.txt'
     else:
         output_file_name = 'cli_usage_%s.txt' % command
 
-    output_file_path = os.path.join('build',
+    output_file_path = os.path.join(BUILD_DIR,
                                     output_file_name)
 
     output = open(output_file_path, 'w')
