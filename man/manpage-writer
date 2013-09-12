@@ -15,6 +15,7 @@ from docutils.core import publish_cmdline, default_description
 from docutils.writers import manpage
 
 from arc.version import VERSION
+from cli_parser_extract import parser_to_rest_build_file
 from cli_args_extract import module_name_to_rest_build_file
 
 class Translator(manpage.Translator):
@@ -30,9 +31,11 @@ class Writer(manpage.Writer):
 
 
 if __name__ == '__main__':
-    for command in ('host', 'job'):
+    parser_to_rest_build_file()
+    for command in ('host', 'job', 'label', 'test'):
+        parser_to_rest_build_file(command)
         module_name_to_rest_build_file(command)
 
-        description = ("Generates ARC unix manual documents. %s" %
-                       default_description)
-        publish_cmdline(writer=Writer(), description=description)
+    description = ("Generates ARC unix manual documents. %s" %
+                   default_description)
+    publish_cmdline(writer=Writer(), description=description)
