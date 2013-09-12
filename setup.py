@@ -1,4 +1,5 @@
 from distutils.core import setup
+from sphinx.setup_command import BuildDoc
 
 import arc.version
 
@@ -13,4 +14,7 @@ setup(name='arc',
                 'arc.cli.args',
                 'arc.cli.actions'],
       data_files=[('/etc/', ['data/arc.conf'])],
+      cmdclass={'build_doc': BuildDoc},
+      command_options={'build_doc': {'source_dir':
+                                     ('setup.py', 'docs/source')}},
       scripts=['scripts/arcli'])
