@@ -21,23 +21,23 @@ OPTIONS
 =======
 
 The following list of options are global `arcli` options. Most options are
-actually subcommand options, as described in the SUBCOMANDS section::
+actually sub command options, as described in the SUB COMMANDS section::
 
  -h, --help           show this help message and exit
- -host HOST           Hostname or IP address for the autotest server
+ --host HOST          Hostname or IP address for the autotest server
 
 
-SUBCOMANDS
-==========
+SUB COMMANDS
+===========
 
-`arcli` usage is broken into subcommands. This is the current list of subcommands:
+`arcli` usage is broken into sub commands. This is the current list of sub commands:
 
 * host
 * job
 * label
 * test
 
-Most subcommands accept common options, such as `-n | --name` and `-i | --id`.
+Most sub commands accept common options, such as `-n | --name` and `-i | --id`.
 So, suppose you're looking for a job with an specific ID, you'd use::
 
  $ arcli job -i <job_id> ...
@@ -47,7 +47,7 @@ Likewise, when looking for a host with a given name, you'd use::
  $ arcli host -n <host_name> ...
 
 
-HOSTS SUBCOMMAND
+HOSTS SUB COMMAND
 ----------------
 
 .. include:: build/cli_usage_host.txt
@@ -62,7 +62,7 @@ including adding new hosts and removing existing ones.
 It's also possible to manage their temporary availability, which is known as
 locking and unlocking machines.
 
-If a given host is not in "Ready" state, you can also ask for a reverification
+If a given host is not in "Ready" state, you can also ask for a re-verification
 job to be sent.
 
 .. include:: build/cli_args_host.txt
@@ -142,7 +142,7 @@ To unlock a host and make it available for the server to schedule new jobs on it
     $ arcli host --unlock -n host.fqdn.org
 
 
-JOB SUBCOMMAND
+JOB SUB COMMAND
 --------------
 
 .. include:: build/cli_usage_job.txt
@@ -156,7 +156,7 @@ The job command allows to create new jobs and list existing jobs.
 .. include:: build/cli_args_job.txt
 
 
-LABEL SUBCOMMAND
+LABEL SUB COMMAND
 ----------------
 
 .. include:: build/cli_usage_label.txt
@@ -170,7 +170,7 @@ The label command allows to create new labels and list existing labels.
 .. include:: build/cli_args_label.txt
 
 
-TEST SUBCOMMAND
+TEST SUB COMMAND
 ---------------
 
 .. include:: build/cli_usage_test.txt
@@ -199,7 +199,7 @@ FILES
 BUGS
 ====
 
-If you find a bug, please report it over ou github page as an issue.
+If you find a bug, please report it over our github page as an issue.
 
 
 AUTHOR
