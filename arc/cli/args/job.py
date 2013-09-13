@@ -76,7 +76,8 @@ ARG_PRIORITY = (('-p', '--priority'),
 
 ARG_PROFILES = (('-P', '--profiles'),
                 {'help': 'the list of profiles for the hosts',
-                 'action': 'append'})
+                 'action': 'append',
+                 'default': []})
 
 ARG_REBOOT_BEFORE = (('-B', '--reboot-before'),
                      {'help': ('Should test machines be rebooted before the '
