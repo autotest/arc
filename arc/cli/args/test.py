@@ -3,9 +3,7 @@ This module defines the command line arguments that will be available on
 the arcli tool when the top level command (and module) test is executed
 """
 
-__all__ = ['ARG_NAME',
-           'ARG_ID',
-           'ACTION_ARGUMENTS',
+__all__ = ['ACTION_ARGUMENTS',
            'ARGUMENTS']
 
 

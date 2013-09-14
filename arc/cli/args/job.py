@@ -10,9 +10,7 @@ import arc.cli.args.actions
 import arc.cli.args.base
 
 
-__all__ = ['ARG_NAME',
-           'ARG_ID',
-           'ARG_MACHINES',
+__all__ = ['ARG_MACHINES',
            'ARG_CONTROL',
            'ARG_MACHINES',
            'ARG_TEST_TYPE',

@@ -4,9 +4,7 @@ the arcli tool when the top level command (and module) label is executed
 """
 
 
-__all__ = ['ARG_NAME',
-           'ARG_ID',
-           'ACTION_ARGUMENTS',
+__all__ = ['ACTION_ARGUMENTS',
            'ARGUMENTS']
 
 
