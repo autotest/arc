@@ -53,14 +53,12 @@ class App(object):
         self.parsed_arguments = None
         self._initialize_argument_parser()
 
-
     def _initialize_log(self):
         """
         Initializes a log instance based on the class name
         """
         logging.basicConfig()
         self.log = logging.getLogger(self.__class__.__name__)
-
 
     def _initialize_config(self):
         """
@@ -76,7 +74,6 @@ class App(object):
                            self.config_klass)
             self.config = self.config_klass()
 
-
     def _initialize_argument_parser(self):
         """
         Initialize the argument parser, either the default or supplied one
@@ -90,7 +87,6 @@ class App(object):
                            " %s", self.argument_parser_klass)
             self.argument_parser = self.argument_parser_klass(self.config)
 
-
     def parse_arguments(self):
         """
         Parse the arguments from the command line
@@ -99,7 +95,6 @@ class App(object):
         if hasattr(self.parsed_arguments, "top_level_action"):
             self.log.debug("Action (subparser): %s",
                            self.parsed_arguments.top_level_action)
-
 
     def initialize_connection(self):
         """
@@ -124,7 +119,6 @@ class App(object):
                 self.log.warn("Host setting not present on arguments, not "
                               "initializing a connection")
 
-
     def dispatch_action(self):
         """
         Calls the actions that was specified via command line arguments.
@@ -148,7 +142,7 @@ class App(object):
         for attribute_name in module.__dict__:
             attribute = module.__dict__[attribute_name]
             if (isinstance(attribute, types.FunctionType) or
-                isinstance(attribute, functools.partial)):
+                    isinstance(attribute, functools.partial)):
                 if hasattr(attribute, 'is_action'):
                     if attribute.is_action:
                         module_actions[attribute_name] = attribute
@@ -168,7 +162,6 @@ class App(object):
         else:
             self.log.error("Action %s specified, but not implemented",
                            chosen_action)
-
 
     def run(self):
         """

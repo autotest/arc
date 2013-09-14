@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import sys, os
+import sys
+import os
 import arc.version
 
 extensions = ['sphinx.ext.autodoc',
@@ -22,14 +23,14 @@ version = '%s.%s' % (arc.version.MAJOR, arc.version.MINOR)
 release = arc.version.VERSION
 
 latex_documents = [
-  ('index', 'arc.tex', _TITLE,
-   _AUTHOR, 'manual'),
+    ('index', 'arc.tex', _TITLE,
+     _AUTHOR, 'manual'),
 ]
 
 texinfo_documents = [
-  ('index', 'arc', _TITLE,
-   _AUTHOR, 'arc', 'Autotest RPC Client',
-   'Miscellaneous'),
+    ('index', 'arc', _TITLE,
+     _AUTHOR, 'arc', 'Autotest RPC Client',
+     'Miscellaneous'),
 ]
 
 epub_title = _SHORTNAME

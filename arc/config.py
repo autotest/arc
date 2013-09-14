@@ -33,7 +33,6 @@ class SystemWideConfigParser(configparser.ConfigParser):
     """
     DEFAULT_PATH = arc.defaults.CONFIG_SYS_PATH
 
-
     def __init__(self):
         configparser.ConfigParser.__init__(self)
 
@@ -52,7 +51,6 @@ class UserLocalConfigParser(configparser.ConfigParser):
     """
     DEFAULT_PATH = os.path.expanduser(arc.defaults.CONFIG_USR_PATH)
 
-
     def __init__(self):
         configparser.ConfigParser.__init__(self)
 
@@ -62,7 +60,6 @@ class UserLocalConfigParser(configparser.ConfigParser):
         paths.append(self.DEFAULT_PATH)
 
         self.read(paths)
-
 
     def get_server_host(self):
         """
@@ -77,7 +74,6 @@ class UserLocalConfigParser(configparser.ConfigParser):
             value = arc.defaults.SERVER_HOST
 
         return value
-
 
     def get_server_port(self):
         """

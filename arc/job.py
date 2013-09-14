@@ -169,18 +169,14 @@ class Job(arc.base.Model):
               'reboot_after', 'reboot_before', 'run_verify', 'synch_count',
               'timeout']
 
-
     def __init__(self, connection, identification=None, name=None):
         super(Job, self).__init__(connection, identification, name)
-
 
     def _get_data_by_id(self):
         return get_data_by_id(self.connection, self.identification)
 
-
     def _get_data_by_name(self):
         return get_data_by_name(self.connection, self.name)
-
 
     def delete(self):
         """
@@ -188,9 +184,7 @@ class Job(arc.base.Model):
         """
         return delete(self.connection, self.identification)
 
-
     abort = delete
-
 
     def __repr__(self):
         return "<Job ID: %s>" % self.id

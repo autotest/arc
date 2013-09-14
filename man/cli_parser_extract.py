@@ -14,9 +14,11 @@ sys.path.insert(0, ARC_DIR)
 
 import arc.cli.args.parser
 
+
 class DummyParser(arc.cli.args.parser.Parser):
     def exit(self):
         pass
+
 
 def process_usage(usage):
     if usage.startswith('usage: '):
@@ -29,12 +31,14 @@ def process_usage(usage):
     rest = ' '.join(rest_parts)
     return rest
 
+
 def parser_to_rest():
     p = arc.cli.args.parser.Parser()
     p.add_arguments_on_all_modules()
     usage = p.format_usage()
     rest = process_usage(usage)
     return rest
+
 
 def process_subcommand_usage(usage):
     result = []
@@ -58,7 +62,6 @@ def parser_subcommand_to_rest(command):
     p = DummyParser()
     p.add_arguments_on_all_modules()
 
-    
     original_stdout = sys.stdout
     sys.stdout = StringIO.StringIO()
 
@@ -74,6 +77,7 @@ def parser_subcommand_to_rest(command):
     usage = usage.readlines()
     rest = process_subcommand_usage(usage)
     return rest
+
 
 def parser_to_rest_build_file(command=None):
     if not os.path.isdir(BUILD_DIR):

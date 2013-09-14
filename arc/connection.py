@@ -81,7 +81,6 @@ class BaseConnection(object):
         except RpcAuthError:
             raise AuthError
 
-
     def _connect(self, path):
         """
         Setup authorization headers and instantiate a JSON RPC Service Proxy
@@ -90,7 +89,6 @@ class BaseConnection(object):
         """
         rpc_uri = "http://%s:%s%s" % (self.hostname, self.port, path)
         return arc.proxy.Proxy(rpc_uri)
-
 
     def run(self, service, operation, *args, **data):
         """
@@ -111,7 +109,6 @@ class BaseConnection(object):
         result = function(*args, **data)
         return result
 
-
     def add_service(self, name, path):
         """
         Add a service to a connection
@@ -130,7 +127,6 @@ class BaseConnection(object):
         if not self.check_min_rpc_interface_version(name):
             raise InvalidServiceVersionError
 
-
     def check_min_rpc_interface_version(self, service_name):
         """
         Checks the minimum required RPC interface version
@@ -147,7 +143,6 @@ class BaseConnection(object):
             return True
 
         return current_version >= min_version
-
 
     def ping(self):
         """
@@ -188,6 +183,6 @@ def get_default():
     global CONNECTION
 
     if CONNECTION is None:
-       CONNECTION = Connection()
+        CONNECTION = Connection()
 
     return CONNECTION

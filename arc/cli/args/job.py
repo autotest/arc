@@ -74,7 +74,7 @@ ARG_PROFILES = (('-P', '--profiles'),
 
 ARG_REBOOT_BEFORE = (('-B', '--reboot-before'),
                      {'help': ('Should test machines be rebooted before the '
-                                'job execution?'),
+                               'job execution?'),
                       'choices': arc.constants.JOB_VALID_REBOOT_BEFORE,
                       'action': arc.cli.args.actions.ChoicesShortcutAction,
                       'default': arc.constants.JOB_VALID_REBOOT_BEFORE[0],

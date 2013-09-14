@@ -17,7 +17,8 @@ __all__ = ['get_data',
 
 
 import functools
-import arc.base, arc.defaults
+import arc.base
+import arc.defaults
 
 
 #
@@ -85,18 +86,14 @@ class Test(arc.base.Model):
               'run_verify', 'sync_count', 'test_category', 'test_class',
               'test_time', 'test_type']
 
-
     def __init__(self, connection, identification=None, name=None):
         super(Test, self).__init__(connection, identification, name)
-
 
     def _get_data_by_id(self):
         return get_data_by_id(self.connection, self.identification)
 
-
     def _get_data_by_name(self):
         return get_data_by_name(self.connection, self.name)
-
 
     def __repr__(self):
         return "<Test Name: %s>" % self.name

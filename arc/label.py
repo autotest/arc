@@ -79,14 +79,11 @@ class Label(arc.base.Model):
     FIELDS = ['atomic_group', 'invalid', 'kernel_config', 'only_if_needed',
               'platform']
 
-
     def __init__(self, connection, identification=None, name=None):
         super(Label, self).__init__(connection, identification, name)
 
-
     def _get_data_by_id(self):
         return get_data_by_id(self.connection, self.identification)
-
 
     def _get_data_by_name(self):
         return get_data_by_name(self.connection, self.name)

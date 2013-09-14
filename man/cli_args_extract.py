@@ -11,6 +11,7 @@ ARC_DIR = os.path.dirname(MAN_DIR)
 
 sys.path.insert(0, ARC_DIR)
 
+
 def get_module(name):
     '''
     Loads the given module and if found, returns it
@@ -22,11 +23,14 @@ def get_module(name):
     except ImportError:
         return None
 
+
 def get_arguments(module):
     return getattr(module, 'ARGUMENTS', None)
 
+
 def get_action_arguments(module):
     return getattr(module, 'ACTION_ARGUMENTS', None)
+
 
 def args_to_rest(module, header, args):
     result = []
@@ -46,6 +50,7 @@ def args_to_rest(module, header, args):
     result.append("")
     return result
 
+
 def module_options_to_rest(module):
     result = []
 
@@ -62,6 +67,7 @@ def module_options_to_rest(module):
         result += args_to_rest(module, 'OPTIONAL ARGUMENTS', arguments)
 
     return '\n'.join(result)
+
 
 def module_name_to_rest_build_file(name):
     if not os.path.isdir(BUILD_DIR):

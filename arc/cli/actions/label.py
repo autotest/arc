@@ -19,8 +19,8 @@ list_brief = arc.cli.actions.base.action(
 
 
 add = arc.cli.actions.base.action(
-        functools.partial(arc.cli.actions.base.add_with_name,
-                          OBJ_NAME, arc.label.add))
+    functools.partial(arc.cli.actions.base.add_with_name,
+                      OBJ_NAME, arc.label.add))
 
 
 delete = arc.cli.actions.base.action(

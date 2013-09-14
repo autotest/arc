@@ -56,6 +56,7 @@ def add_with_name(name, add_function, app):
 
     return add_function(app.connection, app.parsed_arguments.name)
 
+
 def delete(name, klass, delete_function, app):
     """
     Base function for deleting records by name or id

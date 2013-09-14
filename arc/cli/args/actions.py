@@ -39,11 +39,10 @@ class ConfigDefaultAction(argparse.Action):
             self.default = self.builtin_default
 
         if (self.config_section is not None and
-            self.config_key is not None):
+                self.config_key is not None):
 
             if self.metavar is None:
                 self.metavar = self.config_key.upper()
-
 
     def __call__(self, parser, namespace, values, option_string=None):
         setattr(namespace, self.dest, values)
@@ -56,7 +55,6 @@ class ChoicesShortcutAction(ConfigDefaultAction):
     def __init__(self, **kwargs):
         ConfigDefaultAction.__init__(self, **kwargs)
 
-
     def __call__(self, parser, namespace, value, option_string=None):
         if value not in self.choices:
             if self.unique_match(value):
@@ -66,7 +64,6 @@ class ChoicesShortcutAction(ConfigDefaultAction):
                 value = full_value
         ConfigDefaultAction.__call__(self, parser, namespace,
                                      value, option_string)
-
 
     def number_of_matches(self, shortcut):
         """
@@ -81,7 +78,6 @@ class ChoicesShortcutAction(ConfigDefaultAction):
                 count += 1
         return count
 
-
     def unique_match(self, shortcut):
         """
         Get whether the match for the user supplied option string in unique
@@ -89,7 +85,6 @@ class ChoicesShortcutAction(ConfigDefaultAction):
         :param shortcut: the user supplied, usually incomplete option string
         """
         return self.number_of_matches(shortcut) == 1
-
 
     def what_matches(self, shortcut):
         """

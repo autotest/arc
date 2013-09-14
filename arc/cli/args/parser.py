@@ -41,7 +41,6 @@ class ConfigArgumentDefaultsHelpFormatter(argparse.HelpFormatter):
 
         return self._get_help_string(action) % params
 
-
     def _get_help_string(self, action):
         '''
         Returns the modifed help string that includes the values on config
@@ -58,7 +57,7 @@ class ConfigArgumentDefaultsHelpFormatter(argparse.HelpFormatter):
                     defaulting_nargs = [argparse.OPTIONAL,
                                         argparse.ZERO_OR_MORE]
                     if (action.option_strings or
-                        action.nargs in defaulting_nargs):
+                            action.nargs in defaulting_nargs):
                         if action.builtin_default is not None:
                             hlp += '. builtin default: %(builtin_default)s'
                     if hasattr(action, 'config_default'):
@@ -79,7 +78,6 @@ class ShortcutEnablerParser(argparse.ArgumentParser):
     '''
     def __init__(self, **kwargs):
         super(ShortcutEnablerParser, self).__init__(**kwargs)
-
 
     def _check_value(self, action, value):
         if action.__class__.__name__ == 'ChoicesShortcutAction':
@@ -111,7 +109,6 @@ class Parser(argparse.ArgumentParser):
         self._subparsers = None
         self._add_global_arguments()
 
-
     def _add_global_arguments(self):
         '''
         Add global arguments, that is, do not depend on a specifc command
@@ -128,7 +125,6 @@ class Parser(argparse.ArgumentParser):
             config_section='server',
             config_key='host'
             )
-
 
     def add_arguments_on_all_modules(self,
                                      prefix=arc.defaults.ARGS_MODULE_PREFIX):
@@ -151,7 +147,6 @@ class Parser(argparse.ArgumentParser):
 
         for module in mod_names:
             self.add_arguments_on_module(module)
-
 
     def add_arguments_on_module(self, name):
         '''

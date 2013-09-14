@@ -39,7 +39,6 @@ class Proxy(object):
         """
         self.uri = uri
 
-
     def __getattr__(self, name):
         """
         Returns the a method that will eventually be called by the client
@@ -68,7 +67,6 @@ class Method(object):
         self.uri = uri
         self.name = name
 
-
     @staticmethod
     def encode(data):
         """
@@ -87,7 +85,6 @@ class Method(object):
 
         return data
 
-
     @staticmethod
     def decode(data):
         """
@@ -101,7 +98,6 @@ class Method(object):
         if type(data) == bytes:
             data = data.decode()
         return data
-
 
     def __call__(self, *args, **kwargs):
         post = json.dumps({"method": self.name,

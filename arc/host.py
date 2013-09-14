@@ -80,7 +80,7 @@ def add(connection, name, status=None, locked=None, protection=None):
 
 
 def modify(connection, identification, **data):
-    """ 
+    """
    Modify a host entry
 
     :param connection:
@@ -111,20 +111,16 @@ class Host(arc.base.Model):
               'invalid', 'labels', 'lock_time', 'locked', 'locked_by',
               'platform', 'profiles', 'protection', 'status', 'synch_id']
 
-
     def __init__(self, connection, identification=None, name=None):
         super(Host, self).__init__(connection,
                                    identification,
                                    name)
 
-
     def _get_data_by_id(self):
         return get_data_by_id(self.connection, self.identification)
 
-
     def _get_data_by_name(self):
         return get_data_by_name(self.connection, self.name)
-
 
     def get_label_data(self):
         """
@@ -133,13 +129,11 @@ class Host(arc.base.Model):
         return arc.label.get_data(self.connection,
                                   host__id=self.identification)
 
-
     def get_label_names(self):
         """
         Get this host's labels names
         """
         return [i.get("name") for i in self.get_label_data()]
-
 
     def __repr__(self):
         return "<Host Name: %s>" % self.name

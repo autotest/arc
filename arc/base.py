@@ -107,20 +107,17 @@ class Model(object):
                     self.name is not None):
                 self.data_loaded = self.load_data()
 
-
     def _get_data_by_id(self):
         """
         Fetch a single object data by its id
         """
         raise NotImplementedError
 
-
     def _get_data_by_name(self):
         """
         Fetch a single object data by its name
         """
         raise NotImplementedError
-
 
     def get_data(self):
         """
@@ -148,7 +145,6 @@ class Model(object):
 
         return data
 
-
     def load_data(self):
         """
         Loads this object's data and flags if data was successfully fetched
@@ -159,7 +155,6 @@ class Model(object):
 
         self.data = data
         return True
-
 
     def __getattr__(self, attr):
         if attr in self.FIELDS:
