@@ -29,13 +29,6 @@ __all__ = ['ARG_NAME',
 #
 # Individual arguments that can be re-used elsewhere
 #
-ARG_NAME = (('-n', '--name'),
-            {'help': 'name of the job to manipulated'})
-
-ARG_ID = (('-i', '--id'),
-          {'help': 'numeric ID of the job to manipulated',
-           'type': int})
-
 ARG_CONTROL = (('-c', '--control-file'),
                {'help': 'path to the control file defining the job',
                 'type': argparse.FileType('r')})
@@ -130,8 +123,8 @@ ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
 #
 # Other arguments that will influence action behaviour
 #
-ARGUMENTS = [ARG_NAME,
-             ARG_ID,
+ARGUMENTS = [arc.cli.args.base.NAME,
+             arc.cli.args.base.ID,
              ARG_CONTROL,
              ARG_TEST_TYPE,
              ARG_MACHINES,

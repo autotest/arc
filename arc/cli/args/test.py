@@ -13,18 +13,6 @@ import arc.cli.args.base
 
 
 #
-# Individual arguments that can be re-used elsewhere
-#
-ARG_NAME = (('-n', '--name'),
-            {'help': 'name of the test to manipulated'})
-
-
-ARG_ID = (('-i', '--id'),
-          {'help': 'numeric identification of the test to manipulated',
-           'type': int})
-
-
-#
 # Arguments that are treated as actions
 #
 ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
@@ -35,4 +23,4 @@ ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
 #
 # Other arguments that will influence action behaviour
 #
-ARGUMENTS = [ARG_NAME, ARG_ID]
+ARGUMENTS = [arc.cli.args.base.NAME, arc.cli.args.base.ARG_ID]
