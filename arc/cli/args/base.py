@@ -5,9 +5,12 @@ These top level commands import these definitions for uniformity and
 consistency sake
 """
 
-__all__ = ['ADD', 'LIST_BRIEF', 'DELETE']
+__all__ = ['ADD', 'LIST_BRIEF', 'DELETE', 'NAME', 'ID']
 
 
+#
+# Arguments that are treated as actions
+#
 ADD = (('-a', '--add',),
        {'help': 'add a new entry',
         'action': 'store_true',
@@ -21,6 +24,18 @@ LIST_BRIEF = (('-l', '--list-brief',),
 
 
 DELETE = (('-d', '--delete',),
-          {'help': 'delete an existing entry',
+          {'help': 'delete an existing object',
            'action': 'store_true',
            'default': False})
+
+
+#
+# Other arguments that will influence action behaviour
+#
+NAME = (('-n', '--name'),
+        {'help': 'name of the object'})
+
+
+ID = (('-i', '--id'),
+      {'help': 'numeric identification of the object',
+       'type': int})
