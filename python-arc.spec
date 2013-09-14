@@ -1,10 +1,10 @@
 %define shortname arc
-%global commit 59353d5aeb2a39b97e98a4c67d8b414ec507f1c4
+%global commit b9a74fe5da4e12d2b903bc8f1e00e056a3ff60e0
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.3.0
+Version: 0.4.0
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
@@ -43,6 +43,10 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 %{_bindir}/arcli
 
 %changelog
+* Sat Sep 14 2013 Cleber Rosa <cleber@redhat.com> - 0.4.0-1
+- Updated to version 0.4.0
+- Package now includes man page and API docs
+
 * Thu Jul 25 2013 Cleber Rosa <cleber@redhat.com> - 0.3.0-1
 - Updated to version 0.3.0
 
