@@ -23,4 +23,4 @@ ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
 #
 # Other arguments that will influence action behaviour
 #
-ARGUMENTS = [arc.cli.args.base.NAME, arc.cli.args.base.ARG_ID]
+ARGUMENTS = [arc.cli.args.base.NAME, arc.cli.args.base.ID]
