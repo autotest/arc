@@ -19,7 +19,7 @@ import arc.proxy
 
 #: Minimum required version of server side API
 MIN_REQUIRED_VERSION = {}
-MIN_REQUIRED_VERSION[arc.defaults.AFE_SERVICE_NAME] = (2013, 5, 23)
+MIN_REQUIRED_VERSION[arc.defaults.AFE_SERVICE_NAME] = (2013, 9, 11)
 MIN_REQUIRED_VERSION[arc.defaults.TKO_SERVICE_NAME] = (2013, 5, 23)
 
 
