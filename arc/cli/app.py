@@ -3,6 +3,7 @@ This is the main entry point for the ARC cli application
 """
 
 
+import sys
 import types
 import logging
 import importlib
@@ -158,7 +159,7 @@ class App(object):
         kallable = module_actions.get(chosen_action, None)
         if kallable is not None:
             self.initialize_connection()
-            kallable(self)
+            return kallable(self)
         else:
             self.log.error("Action %s specified, but not implemented",
                            chosen_action)
@@ -168,4 +169,11 @@ class App(object):
         Main entry point for application
         """
         self.parse_arguments()
-        self.dispatch_action()
+        action_result = self.dispatch_action()
+        if isinstance(action_result, int):
+            sys.exit(action_result)
+        elif isinstance(action_result, bool):
+            if action_result is True:
+                sys.exit(0)
+            else:
+                sys.exit(1)
