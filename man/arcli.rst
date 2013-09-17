@@ -37,6 +37,7 @@ commands:
 * job
 * label
 * test
+* server
 
 Most sub commands accept common options, such as `-n|--name` and `-i|--id`.
 So, suppose you're looking for a job with an specific ID, you'd use::
@@ -205,6 +206,20 @@ DESCRIPTION
 The label command allows to create new labels and list existing labels.
 
 .. include:: build/cli_args_label.txt
+
+
+SERVER SUB COMMAND
+------------------
+
+.. include:: build/cli_usage_server.txt
+
+
+DESCRIPTION
+~~~~~~~~~~~
+
+The `server` command allows you to inspect server characteristics:
+
+.. include:: build/cli_args_server.txt
 
 
 FILES
