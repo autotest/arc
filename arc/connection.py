@@ -7,7 +7,7 @@ basic object that allows methods to be called on the remote RPC server.
 """
 
 
-__all__ = ['get_default', 'Connection', 'AfeConnection', 'TkoConnection']
+__all__ = ['get_default', 'Connection']
 
 
 import os
@@ -161,6 +161,7 @@ class Connection(BaseConnection):
 
     :param hostname: the IP address or hostname of the server that will be
            contacted upon RPC method execution.
+    :param port: the port number where the RPC server is running
     """
     def __init__(self, hostname=None, port=None):
         super(Connection, self).__init__(hostname, port)

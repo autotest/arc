@@ -18,22 +18,19 @@ For those users, the :func:`arc.connection.get_default` does just that:
 
 .. autofunction:: arc.connection.get_default
 
-Connection to an AFE Service
-----------------------------
+BaseConnection
+--------------
 
-The class that actually powers the connection return by :func:`arc.connection.get_default` is :class:`arc.connection.AfeConnection`:
+.. autoclass:: arc.connection.BaseConnection
+   :members:
 
-.. autoclass:: arc.connection.AfeConnection
-   :members: run
 
-You may have noticed that while the utility function :func:`arc.connection.get_default` does not mention the AFE service in its name. That's because, by convention, the default connection is to the AFE service. Actually, the Connection class is an alias to the :class:`arc.connection.AfeConnection`.
+Connection
+----------
+
+This is the class that actually powers the connection return by :func:`arc.connection.get_default`.
 
 .. autoclass:: arc.connection.Connection
+   :members:
 
-Connection to an TKO Service
-----------------------------
-
-Last but not least, there's also a TkoConnection object that connects to TKO Service on an autotest server. To use an TkoConnection, instantiate it manually. Currently there's no utility function for it.
-
-.. autoclass:: arc.connection.TkoConnection
-   :members: run
+By default, instances of this classes register access to both the AFE and TKO serviceces (by means of running :meth:`arc.connection.BaseConnection.add_service`).
