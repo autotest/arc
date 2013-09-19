@@ -1,16 +1,16 @@
 %define shortname arc
-%global commit b9a74fe5da4e12d2b903bc8f1e00e056a3ff60e0
+%global commit 75dcf4876a6d80f1b3787d8e909f98139c5dc48f
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.4.0
+Version: 0.5.0
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
 URL: http://github.com/clebergnu/arc
 BuildArch: noarch
-Source0: https://github.com/clebergnu/%{shortname}/archive/%{commit}/%{shortname}-%{version}-%{shortcommit}.tar.gz
+Source0: https://github.com/autotest/%{shortname}/archive/%{commit}/%{shortname}-%{version}-%{shortcommit}.tar.gz
 BuildRequires: python2-devel, python-docutils, python-sphinx
 Requires: python
 
@@ -26,6 +26,7 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 %build
 %{__python} setup.py build
 %{__python} setup.py build_doc
+%{__mv} build/sphinx/html api
 %{__python} man/manpage-writer man/arcli.rst man/build/arcli.1
 
 %install
@@ -35,14 +36,18 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 
 %files
 %config(noreplace) %{_sysconfdir}/arc.conf
-%doc README.md
-%doc build/sphinx/html/*
+%doc README.md api
 %{python_sitelib}/arc
 %{python_sitelib}/arc-*.egg-info
-%{_mandir}/man1/arcli.1
+%{_mandir}/man1/arcli.1.gz
 %{_bindir}/arcli
 
 %changelog
+* Thu Sep 19 2013 Cleber Rosa <cleber@redhat.com> - 0.5.0-1
+- Updated to version 0.5.0
+- Change Source0 to reflect the project's new source code location
+- Add API documentation to its own sub directory
+
 * Sat Sep 14 2013 Cleber Rosa <cleber@redhat.com> - 0.4.0-1
 - Updated to version 0.4.0
 - Package now includes man page and API docs
