@@ -179,7 +179,7 @@ def get_default():
     """
     Returns the global, default connection to an AFE service
 
-    :returns: an arc.connection.AfeConnection instance
+    :returns: an arc.connection.Connection instance
     """
     global CONNECTION
 
