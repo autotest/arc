@@ -55,5 +55,6 @@ Data and Object Modules
    host
    job
    label
+   linuxdistro
 
 .. include:: defs.txt
