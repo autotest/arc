@@ -8,7 +8,7 @@ Version: 0.5.0
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
-URL: http://github.com/clebergnu/arc
+URL: http://github.com/autotest/arc
 BuildArch: noarch
 Source0: https://github.com/autotest/%{shortname}/archive/%{commit}/%{shortname}-%{version}-%{shortcommit}.tar.gz
 BuildRequires: python2-devel, python-docutils, python-sphinx
@@ -36,7 +36,7 @@ rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 
 %files
 %config(noreplace) %{_sysconfdir}/arc.conf
-%doc README.md api
+%doc README.md LICENSE api
 %{python_sitelib}/arc
 %{python_sitelib}/arc-*.egg-info
 %{_mandir}/man1/arcli.1.gz
