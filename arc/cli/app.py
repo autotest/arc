@@ -162,8 +162,7 @@ class App(object):
             self.initialize_connection()
             return kallable(self)
         else:
-            self.log.error("Action %s specified, but not implemented",
-                           chosen_action)
+            self.log.error("Action specified is not implemented")
 
     def run(self):
         """
