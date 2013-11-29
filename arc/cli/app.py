@@ -14,6 +14,7 @@ import arc.connection
 import arc.defaults
 import arc.cli.args.parser
 
+from urllib2 import URLError
 
 __all__ = ['App']
 
@@ -168,8 +169,17 @@ class App(object):
         """
         Main entry point for application
         """
-        self.parse_arguments()
-        action_result = self.dispatch_action()
+        action_result = None
+        try:
+            self.parse_arguments()
+            action_result = self.dispatch_action()
+        except KeyboardInterrupt:
+            print 'Interrupted'
+        except URLError as e:
+            self.log.error(e)
+        except arc.proxy.RPCError as e:
+            msg = e.message.split('\n')
+            self.log.error(msg[0])
         if isinstance(action_result, int):
             sys.exit(action_result)
         elif isinstance(action_result, bool):
