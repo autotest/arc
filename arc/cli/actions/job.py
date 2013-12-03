@@ -8,6 +8,7 @@ import functools
 
 import arc.cli.actions.base
 import arc.job
+import arc.tko.job
 import arc.host
 
 
@@ -66,3 +67,53 @@ def add(app):
 delete = arc.cli.actions.base.action(
     functools.partial(arc.cli.actions.base.delete_by_id,
                       OBJ_NAME, arc.job.Job, arc.job.delete))
+
+
+def print_job(connection, job_id, show_all=False):
+    job = arc.job.get_data_by_id(connection, job_id)
+
+    job_labels = {}
+    for k in job.keys():
+        label = k.replace("_", " ")
+        words = label.split(" ")
+        words = [w.capitalize() for w in words]
+        label = " ".join(words)
+        job_labels[k] = label
+
+
+    if not show_all:
+        skip = ["control_file", "parameterized_job", "reserve_hosts",
+                "keyvals", "drone_set", "run_verify", "control_type",
+                "reboot_before", "max_runtime_hrs", "priority",
+                "parse_failed_repair", "dependencies", "timeout",
+                "synch_count", "reboot_after"]
+        for label in skip:
+            del(job_labels[label])
+
+    order = ["id", "name", "owner", "email_list", "created_on"]
+    for label in order:
+        print("%s: %s" % (job_labels[label],
+                          job[label]))
+        del(job_labels[label])
+    print("")
+
+    for label in job_labels:
+        # always skip the control_file contents
+        if label == "control_file":
+            continue
+        print("%s: %s" % (job_labels[label],
+                          job[label]))
+
+    # finally, print the control
+    if show_all:
+        print("Control File Contents:")
+        print("===================== CONTROL FILE START =====================")
+        print("%s" % job["control_file"])
+        print("====================== CONTROL FILE END ======================")
+
+
+@arc.cli.actions.base.action
+def show(app):
+    print_job(app.connection,
+              app.parsed_arguments.show,
+              app.parsed_arguments.all)

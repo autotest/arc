@@ -91,7 +91,9 @@ ARG_REBOOT_AFTER = (('-A', '--reboot-after'),
                      'config_key': 'reboot_after'})
 
 ARG_RUNNING = (('--all',),
-               {'help': 'show all jobs, not only currently running jobs',
+               {'help': ('Show all information. Either show all jobs or all '
+                         'information about a given job. Depends on the '
+                         'given command'),
                 'action': 'store_true',
                 'default': False})
 
@@ -109,13 +111,19 @@ ACTION_DELETE = (('-d', '--delete'),
                   'default': False,
                   'metavar': 'JOB_ID'})
 
+ACTION_SHOW = (('-s', '--show'),
+               {'help': 'shows details about a job',
+                'default': False,
+                'type' : int,
+                'metavar': 'JOB_ID'})
 
 #
 # Arguments that are treated as actions
 #
 ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
                     ACTION_ADD,
-                    ACTION_DELETE]
+                    ACTION_DELETE,
+                    ACTION_SHOW]
 
 
 #
