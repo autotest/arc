@@ -6,8 +6,8 @@ import re
 import functools
 
 import arc.base
-import arc.defaults
 import arc.label
+import arc.shared.frontend
 
 
 __all__ = ['get_data',
@@ -23,7 +23,7 @@ __all__ = ['get_data',
 #
 # Service on RPC server hosting these methods
 #
-SERVICE_NAME = arc.defaults.AFE_SERVICE_NAME
+SERVICE_NAME = arc.shared.frontend.AFE_SERVICE_NAME
 
 
 #

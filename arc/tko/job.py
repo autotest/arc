@@ -7,7 +7,7 @@ server.
 import functools
 
 import arc.base
-import arc.defaults
+import arc.shared.frontend
 
 
 __all__ = ['get_data']
@@ -16,7 +16,7 @@ __all__ = ['get_data']
 #
 # Service on RPC server hosting these methods
 #
-SERVICE_NAME = arc.defaults.TKO_SERVICE_NAME
+SERVICE_NAME = arc.shared.frontend.AFE_SERVICE_NAME
 
 
 #
@@ -36,3 +36,5 @@ GET_METHOD = 'get_jobs'
 # Boiler plate code for remote methods that are generic enough to be reused
 #
 get_data = functools.partial(arc.base.get_data, SERVICE_NAME, GET_METHOD)
+get_data_by_id = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
+                                   ID_FIELD)

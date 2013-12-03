@@ -6,21 +6,22 @@ A connection is a simple wrapper around a JSON-RPC Proxy instance. It is the
 basic object that allows methods to be called on the remote RPC server.
 """
 
-
-__all__ = ['get_default', 'Connection']
-
-
 import os
 
 import arc.config
 import arc.defaults
 import arc.proxy
+import arc.shared.frontend
+import arc.shared.rpc
+
+
+__all__ = ['get_default', 'Connection']
 
 
 #: Minimum required version of server side API
 MIN_REQUIRED_VERSION = {}
-MIN_REQUIRED_VERSION[arc.defaults.AFE_SERVICE_NAME] = (2013, 9, 11)
-MIN_REQUIRED_VERSION[arc.defaults.TKO_SERVICE_NAME] = (2013, 5, 23)
+MIN_REQUIRED_VERSION[arc.shared.frontend.AFE_SERVICE_NAME] = (2013, 9, 11)
+MIN_REQUIRED_VERSION[arc.shared.frontend.TKO_SERVICE_NAME] = (2013, 5, 23)
 
 
 class AuthError(Exception):
@@ -70,7 +71,7 @@ class BaseConnection(object):
         self.port = port
 
         if path is None:
-            path = arc.defaults.RPC_PATH
+            path = arc.shared.rpc.DEFAULT_PATH
 
         self.services = {}
         self.service_proxies = {}
@@ -87,7 +88,7 @@ class BaseConnection(object):
 
         :param path: the URI path where the service is hosted
         """
-        rpc_uri = "http://%s:%s%s" % (self.hostname, self.port, path)
+        rpc_uri = "http://%s:%s/%s" % (self.hostname, self.port, path)
         return arc.proxy.Proxy(rpc_uri)
 
     def run(self, service, operation, *args, **data):
@@ -149,7 +150,8 @@ class BaseConnection(object):
         Tests connectivity to the RPC server
         """
         try:
-            result = self.run(arc.defaults.AFE_SERVICE_NAME, "get_server_time")
+            result = self.run(arc.shared.frontend.AFE_SERVICE_NAME,
+                              "get_server_time")
         except:
             return False
         return True
@@ -165,10 +167,8 @@ class Connection(BaseConnection):
     """
     def __init__(self, hostname=None, port=None):
         super(Connection, self).__init__(hostname, port)
-        self.add_service(arc.defaults.AFE_SERVICE_NAME,
-                         arc.defaults.AFE_RPC_PATH)
-        self.add_service(arc.defaults.TKO_SERVICE_NAME,
-                         arc.defaults.TKO_RPC_PATH)
+        for (name, path) in arc.shared.rpc.PATHS.items():
+            self.add_service(name, path)
 
 
 #: Global, default connection to an AFE service for ease of use by apps

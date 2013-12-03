@@ -18,13 +18,13 @@ __all__ = ['get_data',
 
 import functools
 import arc.base
-import arc.defaults
+import arc.shared.frontend
 
 
 #
 # Service on RPC server hosting these methods
 #
-SERVICE_NAME = arc.defaults.AFE_SERVICE_NAME
+SERVICE_NAME = arc.shared.frontend.AFE_SERVICE_NAME
 
 
 #

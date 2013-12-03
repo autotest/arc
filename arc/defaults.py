@@ -16,14 +16,6 @@ CONFIG_SYS_PATH = '/etc/arc.conf'
 #: The local, user owned configuration file path
 CONFIG_USR_PATH = '~/.arc.conf'
 
-#: RPC path to use for unknown service
-RPC_PATH = '/'
-#: RPC path for the AFE service
-AFE_SERVICE_NAME = 'afe'
-AFE_RPC_PATH = '/afe/server/rpc/'
-#: RPC path for the TKO service
-TKO_SERVICE_NAME = 'tko'
-TKO_RPC_PATH = '/new_tko/server/rpc/'
 #: The default host to connect to
 SERVER_HOST = 'localhost'
 #: The default port to connect to

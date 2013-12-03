@@ -2,7 +2,7 @@
 Module with interface for interacting with server status
 """
 
-import arc.defaults
+import arc.shared.frontend
 
 
 __all__ = ['get_status']
@@ -28,4 +28,5 @@ def get_status(connection):
               `install_server_running`, `used_space_logs`
     :rtype: dict
     '''
-    return connection.run(arc.defaults.AFE_SERVICE_NAME, 'get_server_status')
+    return connection.run(arc.shared.frontend.AFE_SERVICE_NAME,
+                          'get_server_status')
