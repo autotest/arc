@@ -12,7 +12,7 @@ URL: http://github.com/autotest/arc
 BuildArch: noarch
 Source0: https://github.com/autotest/%{shortname}/archive/%{commit}/%{shortname}-%{version}-%{shortcommit}.tar.gz
 BuildRequires: python2-devel, python-docutils, python-sphinx
-Requires: python
+Requires: python, python-pygments
 
 %description
 Arc is the Autotest RPC Client. It provides libraries and tools that interact
