@@ -4,9 +4,11 @@ command is used
 """
 import sys
 
-import arc.cli.actions.base
-import arc.tko.test
+import arc.utils
 import arc.testenvironment
+import arc.tko.test
+import arc.cli.actions.base
+import arc.cli.actions.testenvironment
 
 
 @arc.cli.actions.base.action
@@ -68,49 +70,7 @@ def find(app):
         print('There was no perceived change in the test environment')
         sys.exit(0)
 
-    print('The following changes occurred to the test environment:')
-    test_env_success = arc.testenvironment.get_data(app.connection,
-                                                    pk=last_success_test_env)[0]
-    test_env_failure = arc.testenvironment.get_data(app.connection,
-                                                    pk=last_failure_test_env)[0]
-
-    # Distro comparison
-    distro_success = test_env_success['distro']
-    distro_failure = test_env_failure['distro']
-    if not distro_success == distro_failure:
-        print('Distro used on success test: %s' % distro_success)
-        print('Distro used on failure test: %s' % distro_success)
-
-    # Software component comparison
-    isc_success = app.connection.run(
-        'afe',
-        'get_test_environment_installed_software_components',
-        test_env_success['id'])
-
-    isc_failure = app.connection.run(
-        'afe',
-        'get_test_environment_installed_software_components',
-        test_env_failure['id'])
-
-    # check for packages in A but not in B
-    a_not_in_b = []
-    for i in isc_success:
-        if i not in isc_failure:
-            a_not_in_b.append(i)
-
-    # check for packages in B but not in A
-    b_not_in_a = []
-    for i in isc_failure:
-        if i not in isc_success:
-            b_not_in_a.append(i)
-
-    for i in a_not_in_b:
-        print('* removed "%(kind)s" %(name)s (version: %(version)s, '
-              'release: %(release)s, arch: %(arch)s, '
-              'checksum: %(checksum)s)' % i)
-
-    for i in b_not_in_a:
-        print('* added "%(kind)s" %(name)s (version: %(version)s, '
-              'release: %(release)s, arch: %(arch)s, '
-              'checksum: %(checksum)s)' % i)
-
+    output = arc.cli.actions.testenvironment.get_diff(app.connection,
+                                                      [last_success_test_env,
+                                                       last_failure_test_env])
+    arc.utils.print_diff(output)
