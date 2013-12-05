@@ -21,7 +21,6 @@ query available tests, etc.
 
 %prep
 %setup -q -n %{shortname}-%{commit}
-rm -rf %{buildroot}%{python_sitelib}/arc-*.egg-info
 
 %build
 %{__python} setup.py build
