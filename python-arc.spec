@@ -1,10 +1,10 @@
 %define shortname arc
-%global commit 75dcf4876a6d80f1b3787d8e909f98139c5dc48f
+%global commit 1e7a181e88ec3ab9cb2d94dd607580b947a94c37
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.5.0
+Version: 0.6.0
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
@@ -42,6 +42,11 @@ query available tests, etc.
 %{_bindir}/arcli
 
 %changelog
+* Thu Dec  5 2013 Cleber Rosa <cleber@redhat.com> - 0.6.0-1
+- Updated to version 0.6.0
+- Added python-pygments as new requirement
+- Follow rpmlint suggests wrt cleaning the egg files on the builtroot
+
 * Thu Sep 19 2013 Cleber Rosa <cleber@redhat.com> - 0.5.0-1
 - Updated to version 0.5.0
 - Change Source0 to reflect the project's new source code location
