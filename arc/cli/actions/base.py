@@ -5,8 +5,10 @@ The functions defined here are usually not used directly, but specialized and
 simplified via :func:`functools.partial`
 """
 
+import arc.utils
 
-__all__ = ['list_brief', 'add_with_name', 'delete', 'action',
+
+__all__ = ['list_brief', 'list_full', 'add_with_name', 'delete', 'action',
            'get_identification']
 
 
@@ -31,12 +33,23 @@ def list_brief(list_function, app, **filter_data):
     :param list_function: the function that will be used to retrieve records
     :param app: the running application instance
     """
-    header_printed = False
-    for obj in list_function(app.connection, **filter_data):
-        if not header_printed:
-            print("ID    NAME")
-            header_printed = True
-        print("%-6s%s" % (obj.identification, obj.name))
+    data = list_function(app.connection, **filter_data)
+    arc.utils.print_objs_brief_as_table(data)
+
+
+def list_full():
+    """
+    Base function for full listing records
+
+    This is usually not used directly, but simplified via
+    :func:`functools.partial`
+
+    :param name: name of the type of record, such as host, job, test, etc
+    :param list_function: the function that will be used to retrieve records
+    :param app: the running application instance
+    """
+    data = list_function(app.connection, **filter_data)
+    arc.utils.print_objs_as_table(data)
 
 
 def add_with_name(name, add_function, app):
