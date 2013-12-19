@@ -4,6 +4,7 @@ command is used
 """
 
 
+import logging
 import functools
 
 import arc.cli.actions.base
