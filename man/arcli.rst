@@ -38,6 +38,9 @@ commands:
 * label
 * test
 * server
+* user
+* linuxdistro
+* testenvironment
 
 Most sub commands accept common options, such as `-n|--name` and `-i|--id`.
 So, suppose you're looking for a job with an specific ID, you'd use::
