@@ -52,8 +52,8 @@ Likewise, when looking for a host with a given name, you'd use::
  $ arcli host -n <host_name> ...
 
 
-HOSTS SUB COMMAND
------------------
+HOST SUB COMMAND
+----------------
 
 .. include:: build/cli_usage_host.txt
 
@@ -61,7 +61,7 @@ HOSTS SUB COMMAND
 DESCRIPTION
 ~~~~~~~~~~~
 
-The hosts command allow the user to manipulate hosts on an autotest server,
+The `host` command allows the user to manipulate hosts on an autotest server,
 including adding new hosts and removing existing ones.
 
 It's also possible to manage their temporary availability, which is known as
@@ -156,12 +156,28 @@ TEST SUB COMMAND
 DESCRIPTION
 ~~~~~~~~~~~
 
-The test sub command allows to register new tests and list tests already
+The `test` sub command allows to register new tests and list tests already
 registered on the Autotest server. Please note that registering a new test
 means just that, you probably would still need to copy the test files to the
 server so that it the server can deploy it to test machines.
 
 .. include:: build/cli_args_test.txt
+
+
+TESTENVIRONMENT SUB COMMAND
+---------------------------
+
+.. include:: build/cli_usage_testenvironment.txt
+
+
+DESCRIPTION
+~~~~~~~~~~~
+A test environment is a collection of the environment that existed
+during a test run. Since a test runs on a machine, this environment
+information may be what differs a test with a PASS from a test with a
+FAIL result.
+
+.. include:: build/cli_args_testenvironment.txt
 
 
 JOB SUB COMMAND
@@ -173,7 +189,7 @@ JOB SUB COMMAND
 DESCRIPTION
 ~~~~~~~~~~~
 
-The job command lets users submit new jobs with various parameters, abort
+The `job` command lets users submit new jobs with various parameters, abort
 jobs that are running and list both currently running jobs and previous jobs
 submitted to the server.
 
@@ -184,7 +200,7 @@ SUBMITTING A NEW JOB
 ~~~~~~~~~~~~~~~~~~~~
 
 The basis for a job in Autotest is a control file, and that's what you'll
-nedd before submitting a new job.
+need before submitting a new job.
 
 Suppose you have a local copy of the Autotest source tree at
 `/home/user/autotest`, and the sleep test control file at
@@ -206,9 +222,24 @@ LABEL SUB COMMAND
 DESCRIPTION
 ~~~~~~~~~~~
 
-The label command allows to create new labels and list existing labels.
+The `label` command allows to create new labels and list existing labels.
 
 .. include:: build/cli_args_label.txt
+
+
+LINUXDISTRO SUB COMMAND
+-----------------------
+
+.. include:: build/cli_usage_linuxdistro.txt
+
+
+DESCRIPTION
+~~~~~~~~~~~
+
+The `linuxdistro` command allows you to inspect the distribution
+name and version numbers.
+
+.. include:: build/cli_args_linuxdistro.txt
 
 
 SERVER SUB COMMAND
@@ -220,9 +251,23 @@ SERVER SUB COMMAND
 DESCRIPTION
 ~~~~~~~~~~~
 
-The `server` command allows you to inspect server characteristics:
+The `server` command allows you to inspect server characteristics.
 
 .. include:: build/cli_args_server.txt
+
+
+USER SUB COMMAND
+~~~~~~~~~~~~~~~~
+
+.. include:: build/cli_usage_user.txt
+
+
+DESCRIPTION
+~~~~~~~~~~~
+
+The `user` command allows you to inspect user characteristics.
+
+.. include:: build/cli_args_user.txt
 
 
 FILES
