@@ -1,5 +1,5 @@
 """
-Module with interface for fetching users on a autotest server
+Module with interface for fetching users on an autotest server
 """
 
 import functools
@@ -14,6 +14,9 @@ __all__ = ['get_data',
            'get_ids_names',
            'get_data_by_id',
            'get_data_by_name',
+           'add',
+           'delete',
+           'modify',
            'User',
            'get_objs']
 
@@ -35,6 +38,9 @@ NAME_FIELD = 'login'
 # Name of RPC methods as defined on the server side
 #
 GET_METHOD = 'get_users'
+ADD_METHOD = 'add_user'
+DELETE_METHOD = 'delete_user'
+MODIFY_METHOD = 'modify_user'
 
 
 #
@@ -54,6 +60,35 @@ get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
 #
 # Methods that have add more logic related to the manipulated object nature
 #
+def add(connection, login, access_level=None):
+    """
+    Add a new user entry
+
+    :param connection:
+    :param login:
+    :param access_level:
+    """
+    return connection.run(SERVICE_NAME, ADD_METHOD, login, access_level)
+
+def modify(connection, user_id, **data):
+    """
+    Modify an user entry
+
+    :param connection:
+    :param user_id:
+    :param data:
+    """
+    return connection.run(SERVICE_NAME, MODIFY_METHOD, user_id, **data)
+
+def delete(connection, user_id):
+    """
+    Delete an user entry
+
+    :param connection:
+    :param user_id:
+    """
+    return connection.run(SERVICE_NAME, DELETE_METHOD, user_id)
+
 
 class User(arc.base.Model):
     """
