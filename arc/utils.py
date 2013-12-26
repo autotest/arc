@@ -110,3 +110,13 @@ def print_objs_as_table(objs):
         extra = [x.upper() for x in obj.FIELDS]
         fields.extend(extra)
         print_tabular_data(fields, values)
+
+def print_obj_content(obj):
+    '''
+    Prints object content.
+    :param obj: the object
+    :rtype: None
+    '''
+    for fld in obj.keys():
+        label = fld.replace('_', ' ').title() # 'foo_bar' => 'Foo Bar'
+        print "%s: %s" % (label, obj[fld])

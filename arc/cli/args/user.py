@@ -10,6 +10,15 @@ __all__ = ['ACTION_ARGUMENTS',
 
 import arc.cli.args.base
 
+#
+# Action arguments
+#
+ACTION_SHOW = (('-s', '--show'),
+               {'help': 'shows details about an user',
+                'default': False,
+                'type': int,
+                'metavar': 'USER_ID'})
+
 
 #
 # Arguments that are treated as actions
@@ -18,7 +27,8 @@ ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
                     arc.cli.args.base.LIST_FULL,
                     arc.cli.args.base.ADD,
                     #arc.cli.args.base.MODIFY,
-                    arc.cli.args.base.DELETE]
+                    arc.cli.args.base.DELETE,
+                    ACTION_SHOW]
 
 
 #
