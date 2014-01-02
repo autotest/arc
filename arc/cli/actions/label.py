@@ -18,6 +18,11 @@ list_brief = arc.cli.actions.base.action(
                       arc.label.get_objs))
 
 
+list_full = arc.cli.actions.base.action(
+    functools.partial(arc.cli.actions.base.list_full,
+                      arc.label.get_objs))
+
+
 add = arc.cli.actions.base.action(
     functools.partial(arc.cli.actions.base.add_with_name,
                       OBJ_NAME, arc.label.add))

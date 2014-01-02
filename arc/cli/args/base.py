@@ -5,7 +5,7 @@ These top level commands import these definitions for uniformity and
 consistency sake
 """
 
-__all__ = ['ADD', 'LIST_BRIEF', 'DELETE', 'NAME', 'ID']
+__all__ = ['ADD', 'LIST_BRIEF', 'LIST_FULL', 'DELETE', 'NAME', 'ID']
 
 
 #
@@ -20,6 +20,12 @@ ADD = (('-a', '--add',),
 LIST_BRIEF = (('-l', '--list-brief',),
               {'help': 'list all records briefly',
                'action': 'store_true',
+               'default': False})
+
+
+LIST_FULL = (('-ll', '--list-full',),
+             {'help': 'list all records with all information',
+              'action': 'store_true',
                'default': False})
 
 

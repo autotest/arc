@@ -71,7 +71,7 @@ def print_tabular_data(fields, values, show_header=True):
     '''
     sizes = [len(x) for x in fields]
     for value in values:
-        value = [len(x) for x in value]
+        value = [len(str(x)) for x in value]
         sizes = [max(x, y) for x, y in zip(sizes, value)]
     mask = ['{:<%d}' % x for x in sizes]
     mask = ' '.join(mask)
@@ -89,8 +89,9 @@ def print_objs_brief_as_table(objs):
     values = []
     for obj in objs:
         values.append((str(obj.identification), obj.name))
-    fields = [obj.ID_FIELD.upper(), obj.NAME_FIELD.upper()]
-    print_tabular_data(fields, values)
+    if values:
+        fields = [obj.ID_FIELD.upper(), obj.NAME_FIELD.upper()]
+        print_tabular_data(fields, values)
 
 def print_objs_as_table(objs):
     '''
@@ -100,8 +101,12 @@ def print_objs_as_table(objs):
     '''
     values = []
     for obj in objs:
-        values.append((str(obj.identification), obj.name))
-    fields = [obj.ID_FIELD.upper(), obj.NAME_FIELD.upper()]
-    extra = [x.upper() for x in obj.FIELDS]
-    fields.extend(extra)
-    print_tabular_data(fields, values)
+        val = [str(obj.identification), obj.name]
+        for fld in obj.FIELDS:
+            val.append(getattr(obj, fld, ''))
+        values.append(val)
+    if values:
+        fields = [obj.ID_FIELD.upper(), obj.NAME_FIELD.upper()]
+        extra = [x.upper() for x in obj.FIELDS]
+        fields.extend(extra)
+        print_tabular_data(fields, values)

@@ -15,6 +15,7 @@ import arc.cli.args.base
 # Arguments that are treated as actions
 #
 ACTION_ARGUMENTS = [arc.cli.args.base.LIST_BRIEF,
+                    arc.cli.args.base.LIST_FULL,
                     arc.cli.args.base.ADD,
                     #arc.cli.args.base.MODIFY,
                     arc.cli.args.base.DELETE]

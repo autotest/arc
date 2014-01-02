@@ -37,7 +37,7 @@ def list_brief(list_function, app, **filter_data):
     arc.utils.print_objs_brief_as_table(data)
 
 
-def list_full():
+def list_full(list_function, app, **filter_data):
     """
     Base function for full listing records
 
