@@ -23,7 +23,7 @@ LIST_BRIEF = (('-l', '--list-brief',),
                'default': False})
 
 
-LIST_FULL = (('-ll', '--list-full',),
+LIST_FULL = (('-L', '--list-full',),
              {'help': 'list all records with all information',
               'action': 'store_true',
                'default': False})
