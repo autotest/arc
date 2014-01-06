@@ -27,3 +27,17 @@ def status(app):
     print("Log Disk Space Usage: %s%%" % stat["used_space_logs"])
 
     return stat["concerns"]
+
+@arc.cli.actions.base.action
+def list_install_profiles(app):
+    """
+    List the available installation profiles on the install server
+
+    :param app: the running application instance
+    """
+    profiles = arc.server.get_profiles(app.connection)
+    profiles = [x['name'] for x in profiles]
+    for profile in profiles:
+        if profile == 'N/A':
+            break
+        print profile

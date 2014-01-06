@@ -14,5 +14,9 @@ ARG_STATUS = (('-s', '--status'),
                'action': 'store_true',
                'default': False})
 
+ARG_PROFILES = (('-l', '--list-install-profiles'),
+                {'help': 'list the available installation profiles',
+                 'action': 'store_true',
+                 'default': False})
 
-ACTION_ARGUMENTS = [ARG_STATUS]
+ACTION_ARGUMENTS = [ARG_STATUS, ARG_PROFILES]

@@ -5,8 +5,17 @@ Module with interface for interacting with server status
 import arc.shared.frontend
 
 
-__all__ = ['get_status']
+__all__ = ['get_profiles', 'get_status']
 
+
+def get_profiles(connection):
+    '''
+    :param connection: an active connection to the Autotest server
+    :type connection: `class:arc.connection.Connection`
+    :rtype: dict
+    '''
+    return connection.run(arc.shared.frontend.AFE_SERVICE_NAME,
+                          'get_profiles')
 
 def get_status(connection):
     '''
