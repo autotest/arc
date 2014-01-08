@@ -5,6 +5,9 @@ command is used
 
 
 import functools
+import os
+import shutil
+import tempfile
 
 import arc.cli.actions.base
 import arc.job
@@ -36,11 +39,17 @@ def add(app):
     machines = app.parsed_arguments.machines
     hosts, meta_hosts = arc.host.parse_specification(app.connection, machines)
 
+    control_file = app.parsed_arguments.control_file
+
+    # Open the Control File in vi or $EDITOR
+    if app.parsed_arguments.edit_before_sending is True:
+        control_file = edit_control_file(control_file)
+
     result = arc.job.add_complete(
         connection=app.connection,
         name=app.parsed_arguments.name,
         priority=app.parsed_arguments.priority,
-        control_file=app.parsed_arguments.control_file.read(),
+        control_file=control_file.read(),
         control_type=app.parsed_arguments.test_type,
         hosts=hosts,
         profiles=app.parsed_arguments.profiles,
@@ -68,6 +77,13 @@ delete = arc.cli.actions.base.action(
     functools.partial(arc.cli.actions.base.delete_by_id,
                       OBJ_NAME, arc.job.Job, arc.job.delete))
 
+def edit_control_file(control_file):
+    editor = os.environ.get('EDITOR', 'vi')
+    fd, new_control_file = tempfile.mkstemp(prefix='control')
+    shutil.copyfile(control_file.name, new_control_file)
+    os.system(editor + ' ' + new_control_file)
+    control_file = open(new_control_file)
+    return control_file
 
 def print_job(connection, job_id, show_all=False):
     job = arc.job.get_data_by_id(connection, job_id)

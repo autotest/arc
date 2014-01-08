@@ -97,6 +97,12 @@ ARG_RUNNING = (('--all',),
                 'action': 'store_true',
                 'default': False})
 
+ARG_EDIT_BEFORE = (('-E', '--edit-before-sending', ),
+                   {'help': ('Open control file in editor before sending '
+                             'the control file to the server.'),
+                    'action': 'store_true',
+                    'default': False})
+
 
 #
 # Action arguments
@@ -139,4 +145,5 @@ ARGUMENTS = [arc.cli.args.base.NAME,
              ARG_PROFILES,
              ARG_REBOOT_BEFORE,
              ARG_REBOOT_AFTER,
-             ARG_RUNNING]
+             ARG_RUNNING,
+             ARG_EDIT_BEFORE]
