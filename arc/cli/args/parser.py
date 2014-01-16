@@ -184,4 +184,9 @@ class Parser(argparse.ArgumentParser):
                     # Add config instance to the options
                     if arg[1].get('config', None) == True:
                         arg[1]['config'] = self.config
-                    parser.add_argument(*arg[0], **arg[1])
+                    # Support either both short+long options or either one, short OR long
+                    short_and_or_long_opts = arg[0]
+                    if len(short_and_or_long_opts) == 1:
+                        parser.add_argument(arg[0][0], **arg[1])
+                    else:
+                        parser.add_argument(*arg[0], **arg[1])
