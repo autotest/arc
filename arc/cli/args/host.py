@@ -34,17 +34,17 @@ ARG_LIST_JOBS = (('-j', '--list-jobs'),
                   'default': False})
 
 
-ARG_LOCK = (('-L', '--lock'),
+ARG_LOCK = (('--lock', ),
             {'help': 'locks the host (makes it unavailable to new jobs)',
              'action': 'store_true'})
 
 
-ARG_UNLOCK = (('-U', '--unlock'),
+ARG_UNLOCK = (('--unlock', ),
               {'help': 'unlocks the host (makes it available to new jobs)',
                'action': 'store_true'})
 
 
-ARG_REVERIFY = (('-r', '--reverify'),
+ARG_REVERIFY = (('--reverify', ),
                 {'help': 'schedules a host reverification job',
                  'action': 'store_true'})
 
