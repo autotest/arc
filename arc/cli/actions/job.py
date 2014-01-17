@@ -13,6 +13,7 @@ import arc.cli.actions.base
 import arc.job
 import arc.tko.job
 import arc.host
+import arc.test
 
 
 OBJ_NAME = "job"
@@ -39,7 +40,13 @@ def add(app):
     machines = app.parsed_arguments.machines
     hosts, meta_hosts = arc.host.parse_specification(app.connection, machines)
 
-    control_file = app.parsed_arguments.control_file
+    if app.parsed_arguments.from_test_number:
+        content = arc.test.get_control_file_by_id(app.connection,
+                                                  app.parsed_arguments.from_test_number)
+        control_file = open(create_control_file(content))
+
+    if app.parsed_arguments.control_file:
+        control_file = app.parsed_arguments.control_file
 
     # Open the Control File in vi or $EDITOR
     if app.parsed_arguments.edit_before_sending is True:
@@ -84,6 +91,12 @@ def edit_control_file(control_file):
     os.system(editor + ' ' + new_control_file)
     control_file = open(new_control_file)
     return control_file
+
+def create_control_file(content):
+    fd, new_control_file = tempfile.mkstemp(prefix='control')
+    with open(new_control_file, 'w') as f:
+        f.write(content)
+    return new_control_file
 
 def print_job(connection, job_id, show_all=False):
     job = arc.job.get_data_by_id(connection, job_id)

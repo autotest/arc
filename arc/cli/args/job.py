@@ -97,6 +97,12 @@ ARG_RUNNING = (('--all',),
                 'action': 'store_true',
                 'default': False})
 
+ARG_FROM_TEST = (('-T', '--from-test-number'),
+                 {'help': ('Add (create) a new job using the control file'
+                  'from a test registered on the autotest server'),
+                  'type': int,
+                  'metavar': 'TEST_ID'})
+
 ARG_EDIT_BEFORE = (('-E', '--edit-before-sending', ),
                    {'help': ('Open control file in editor before sending '
                              'the control file to the server.'),
@@ -146,4 +152,5 @@ ARGUMENTS = [arc.cli.args.base.NAME,
              ARG_REBOOT_BEFORE,
              ARG_REBOOT_AFTER,
              ARG_RUNNING,
+             ARG_FROM_TEST,
              ARG_EDIT_BEFORE]
