@@ -30,14 +30,17 @@ class Proxy(object):
     """
     Service proxy to a JSON RPC Server
     """
-    def __init__(self, uri):
+    def __init__(self, uri, headers={}):
         """
         Initializes a new proxy
 
         :param uri: the complete URI for the JSON RPC Server
         :type uri: str
+        :param headers: the headers to pass to the request
+        :type headers: dict
         """
         self.uri = uri
+        self.headers = headers
 
     def __getattr__(self, name):
         """
@@ -48,14 +51,14 @@ class Proxy(object):
         :returns: a method wrapper instance
         :rtype: :class:`Method`
         """
-        return Method(self.uri, name)
+        return Method(self.uri, self.headers, name)
 
 
 class Method(object):
     """
     Class that wrapps an RPC Server Method
     """
-    def __init__(self, uri, name):
+    def __init__(self, uri, headers, name):
         """
         Initializes a new method
 
@@ -65,6 +68,7 @@ class Method(object):
         :type name: str
         """
         self.uri = uri
+        self.headers = headers
         self.name = name
 
     @staticmethod
@@ -106,7 +110,7 @@ class Method(object):
 
         # Send the request
         post = self.encode(post)
-        request = Request(self.uri, data=post)
+        request = Request(self.uri, data=post, headers=self.headers)
 
         # Receive the response
         response = urlopen(request).read()

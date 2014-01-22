@@ -56,7 +56,7 @@ class BaseConnection(object):
     """
     Base RPC connection
     """
-    def __init__(self, hostname=None, port=None, path=None):
+    def __init__(self, hostname=None, port=None, path=None, username=None):
         """
         Initializes a connection to an empty path
 
@@ -73,23 +73,29 @@ class BaseConnection(object):
         if path is None:
             path = arc.shared.rpc.DEFAULT_PATH
 
+        if username is None:
+            username = arc.config.get_default().get_username()
+        self.username = username
+
         self.services = {}
         self.service_proxies = {}
         self.service_interface_versions = {}
 
         try:
-            self.proxy = self._connect(path)
+            self.proxy = self._connect(path, self.username)
         except RpcAuthError:
             raise AuthError
 
-    def _connect(self, path):
+    def _connect(self, path, username):
         """
         Setup authorization headers and instantiate a JSON RPC Service Proxy
 
         :param path: the URI path where the service is hosted
+        :param username: the username to login
         """
         rpc_uri = "http://%s:%s/%s" % (self.hostname, self.port, path)
-        return arc.proxy.Proxy(rpc_uri)
+        headers = {'AUTHORIZATION': username}
+        return arc.proxy.Proxy(rpc_uri, headers)
 
     def run(self, service, operation, *args, **data):
         """
@@ -118,7 +124,7 @@ class BaseConnection(object):
         :param path: the path in the URI that hosts the service
         """
         self.services[name] = path
-        self.service_proxies[name] = self._connect(path)
+        self.service_proxies[name] = self._connect(path, self.username)
         try:
             api_version = tuple(self.run(name, "get_interface_version"))
         except:
@@ -165,8 +171,8 @@ class Connection(BaseConnection):
            contacted upon RPC method execution.
     :param port: the port number where the RPC server is running
     """
-    def __init__(self, hostname=None, port=None):
-        super(Connection, self).__init__(hostname, port)
+    def __init__(self, hostname=None, port=None, username=None):
+        super(Connection, self).__init__(hostname, port, username)
         for (name, path) in arc.shared.rpc.PATHS.items():
             self.add_service(name, path)
 
