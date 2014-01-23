@@ -1,10 +1,10 @@
 %define shortname arc
-%global commit 1e7a181e88ec3ab9cb2d94dd607580b947a94c37
+%global commit 4fefe11edc748abd836b0db0e4ac8c8f6dbc4367
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.6.0
+Version: 0.7.0
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
@@ -23,13 +23,13 @@ query available tests, etc.
 %setup -q -n %{shortname}-%{commit}
 
 %build
-%{__python} setup.py build
-%{__python} setup.py build_doc
+%{__python2} setup.py build
+%{__python2} setup.py build_doc
 %{__mv} build/sphinx/html api
-%{__python} man/manpage-writer man/arcli.rst man/build/arcli.1
+%{__python2} man/manpage-writer man/arcli.rst man/build/arcli.1
 
 %install
-%{__python} setup.py install --root %{buildroot} --skip-build
+%{__python2} setup.py install --root %{buildroot} --skip-build
 %{__mkdir} -p %{buildroot}%{_mandir}/man1
 %{__install} -m 0644 man/build/arcli.1 %{buildroot}%{_mandir}/man1/arcli.1
 
@@ -42,6 +42,10 @@ query available tests, etc.
 %{_bindir}/arcli
 
 %changelog
+* Thu Jan 23 2014 Cleber Rosa <cleber@redhat.com> - 0.7.0-1
+- Updated to version 0.7.0
+- Replaced "python" macros for "python2"
+
 * Thu Dec  5 2013 Cleber Rosa <cleber@redhat.com> - 0.6.0-1
 - Updated to version 0.6.0
 - Added python-pygments as new requirement
