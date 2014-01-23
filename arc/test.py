@@ -9,6 +9,7 @@ __all__ = ['get_data',
            'get_ids_names',
            'get_data_by_id',
            'get_data_by_name',
+           'get_control_file_by_id',
            'add',
            'delete',
            'modify',
@@ -41,6 +42,7 @@ GET_METHOD = 'get_tests'
 ADD_METHOD = 'add_test'
 DELETE_METHOD = 'delete_test'
 MODIFY_METHOD = 'modify_test'
+CONTROL_FILE_METHOD = 'generate_control_file'
 
 
 #
@@ -75,6 +77,18 @@ def modify(connection, identification, **data):
     """
     return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
 
+
+def get_control_file_by_id(connection, identification):
+    """
+    Get Control File for a test by passing its identification.
+
+    :param connection: an instance of connection
+    :param identification: a test identification
+    :returns: the Control File (script) for the test
+    """
+    test = connection.run(SERVICE_NAME, CONTROL_FILE_METHOD,
+                          tests=(identification,))
+    return test['control_file']
 
 class Test(arc.base.Model):
     """
