@@ -1,10 +1,10 @@
 %define shortname arc
-%global commit 4fefe11edc748abd836b0db0e4ac8c8f6dbc4367
+%global commit 73a4f9e7a1f512114f98d48e7f8d87c198e333a4
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 
 Summary: Autotest RPC Client
 Name: python-arc
-Version: 0.7.0
+Version: 0.7.1
 Release: 1%{?dist}
 License: GPLv2
 Group: Development/Libraries
@@ -42,6 +42,10 @@ query available tests, etc.
 %{_bindir}/arcli
 
 %changelog
+* Thu Jan 23 2014 Cleber Rosa <cleber@redhat.com> - 0.7.1-1
+- Updated to version 0.7.1
+- Includes upstream packaging bugfix
+
 * Thu Jan 23 2014 Cleber Rosa <cleber@redhat.com> - 0.7.0-1
 - Updated to version 0.7.0
 - Replaced "python" macros for "python2"
