@@ -105,11 +105,15 @@ class App(object):
         if self.connection is not None:
             self.log.debug("Connection is already initialized")
         else:
+            if hasattr(self.parsed_arguments, "username"):
+                u = self.parsed_arguments.username
+            else:
+                u = None
             if hasattr(self.parsed_arguments, "host"):
                 h = self.parsed_arguments.host
                 self.log.debug("Connecting to: %s", h)
                 try:
-                    self.connection = arc.connection.Connection(h)
+                    self.connection = arc.connection.Connection(h, username=u)
                 except arc.connection.InvalidServiceVersionError:
                     self.log.error("The RPC interface version on the connected "
                                    "server is more recent than this version of "

@@ -125,6 +125,15 @@ class Parser(argparse.ArgumentParser):
             config_section='server',
             config_key='host'
             )
+        server_group.add_argument(
+            '--username',
+            help=('Username to login in autotest server'),
+            action=arc.cli.args.actions.ConfigDefaultAction,
+            config=self.config,
+            config_section='server',
+            config_key='username'
+            )
+
 
     def add_arguments_on_all_modules(self,
                                      prefix=arc.defaults.ARGS_MODULE_PREFIX):

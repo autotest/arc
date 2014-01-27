@@ -172,7 +172,7 @@ class Connection(BaseConnection):
     :param port: the port number where the RPC server is running
     """
     def __init__(self, hostname=None, port=None, username=None):
-        super(Connection, self).__init__(hostname, port, username)
+        super(Connection, self).__init__(hostname, port, username=username)
         for (name, path) in arc.shared.rpc.PATHS.items():
             self.add_service(name, path)
 
