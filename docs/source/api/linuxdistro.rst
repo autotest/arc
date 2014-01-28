@@ -1,4 +1,4 @@
-.. _arc-api-host:
+.. _arc-api-linuxdistro:
 
 :mod:`linuxdistro` --- Manipulating known Linux Distributions
 =============================================================
