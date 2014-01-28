@@ -10,6 +10,7 @@ system wide configuration file.
 
 
 import os
+import getpass
 
 import arc.defaults
 
@@ -87,6 +88,18 @@ class UserLocalConfigParser(configparser.ConfigParser):
         if not value:
             value = arc.defaults.SERVER_PORT
 
+        return value
+
+    def get_username(self):
+        """
+        Returns the username to login
+        """
+        if os.environ.has_key('ARC_USER'):
+            value = os.environ['ARC_USER']
+        elif self.has_option('server', 'username'):
+            value = self.get('server', 'username')
+        else:
+            value = getpass.getuser()
         return value
 
 
