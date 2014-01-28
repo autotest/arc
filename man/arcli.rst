@@ -25,6 +25,7 @@ actually sub command options, as described in the SUB COMMANDS section::
 
  -h, --help           show this help message and exit
  --host HOST          Hostname or IP address for the autotest server
+ --username USERNAME  Username to login in autotest server
 
 
 SUB COMMANDS
