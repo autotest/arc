@@ -53,11 +53,18 @@ def add(app):
     """
     machines = app.parsed_arguments.machines
     hosts, meta_hosts = arc.host.parse_specification(app.connection, machines)
+    name = app.parsed_arguments.name
+    control_type = app.parsed_arguments.test_type
 
     if app.parsed_arguments.from_test_number:
         content = arc.test.get_control_file_by_id(app.connection,
                                                   app.parsed_arguments.from_test_number)
         control_file = open(create_control_file(content))
+        test_data = arc.test.get_data_by_id(app.connection,
+                                            int(app.parsed_arguments.from_test_number))
+        control_type = test_data['test_type']
+        if app.parsed_arguments.name is None:
+            name = test_data['name']
 
     if app.parsed_arguments.control_file:
         control_file = app.parsed_arguments.control_file
@@ -68,10 +75,10 @@ def add(app):
 
     result = arc.job.add_complete(
         connection=app.connection,
-        name=app.parsed_arguments.name,
+        name=name,
         priority=app.parsed_arguments.priority,
         control_file=control_file.read(),
-        control_type=app.parsed_arguments.test_type,
+        control_type=control_type,
         hosts=hosts,
         profiles=app.parsed_arguments.profiles,
         # FIXME: for now we only use the machines params
