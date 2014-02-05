@@ -43,6 +43,7 @@ commands:
 * linuxdistro
 * testenvironment
 * atomicgroup
+* acl
 
 Most sub commands accept common options, such as `-n|--name` and `-i|--id`.
 So, suppose you're looking for a job with an specific ID, you'd use::
@@ -286,6 +287,21 @@ existing atomic groups. Atomic groups are a collection of hosts which
 must only be scheduled all at once.
 
 .. include:: build/cli_args_atomicgroup.txt
+
+
+ACL SUB COMMAND
+---------------
+
+.. include:: build/cli_usage_acl.txt
+
+
+DESCRIPTION
+~~~~~~~~~~~
+
+The `acl` command allows to create new atomic groups and list
+existing access control lists.
+
+.. include:: build/cli_args_acl.txt
 
 
 FILES

@@ -41,7 +41,8 @@ class Writer(manpage.Writer):
 if __name__ == '__main__':
     parser_to_rest_build_file()
     commands = ('host', 'job', 'label', 'test', 'server', 'user',
-                'linuxdistro', 'testenvironment')
+                'linuxdistro', 'testenvironment', 'atomicgroup',
+                'acl')
     for command in commands:
         parser_to_rest_build_file(command)
         module_name_to_rest_build_file(command)
