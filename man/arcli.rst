@@ -42,6 +42,7 @@ commands:
 * user
 * linuxdistro
 * testenvironment
+* atomicgroup
 
 Most sub commands accept common options, such as `-n|--name` and `-i|--id`.
 So, suppose you're looking for a job with an specific ID, you'd use::
@@ -269,6 +270,21 @@ DESCRIPTION
 The `user` command allows you to inspect user characteristics.
 
 .. include:: build/cli_args_user.txt
+
+
+ATOMICGROUP SUB COMMAND
+-----------------------
+
+.. include:: build/cli_usage_atomicgroup.txt
+
+
+DESCRIPTION
+~~~~~~~~~~~
+
+The `atomicgroup` command allows to create new atomic groups and list
+existing atomic_groups.
+
+.. include:: build/cli_args_atomicgroup.txt
 
 
 FILES
