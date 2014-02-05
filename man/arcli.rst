@@ -282,7 +282,8 @@ DESCRIPTION
 ~~~~~~~~~~~
 
 The `atomicgroup` command allows to create new atomic groups and list
-existing atomic_groups.
+existing atomic groups. Atomic groups are a collection of hosts which
+must only be scheduled all at once.
 
 .. include:: build/cli_args_atomicgroup.txt
 
