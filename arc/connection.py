@@ -167,8 +167,8 @@ class BaseConnection(object):
         Tests connectivity to the RPC server
         """
         try:
-            result = self.run(arc.shared.frontend.AFE_SERVICE_NAME,
-                              "get_server_time")
+            self.run(arc.shared.frontend.AFE_SERVICE_NAME,
+                     "get_server_time")
         except:
             return False
         return True
