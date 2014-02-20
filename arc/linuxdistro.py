@@ -16,11 +16,9 @@
 Module with interface for fetching and manipulating hosts on a autotest server
 """
 
-import re
 import functools
 
 import arc.base
-import arc.label
 import arc.shared.frontend
 
 

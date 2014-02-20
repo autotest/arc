@@ -17,8 +17,6 @@ Module that implements the actions for the CLI App when the testenvironment
 toplevel command is used
 """
 
-import os
-import sys
 import difflib
 import logging
 

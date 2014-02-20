@@ -20,7 +20,6 @@ groups on a autotest server.
 import functools
 
 import arc.base
-import arc.defaults
 import arc.shared.frontend
 
 
@@ -82,6 +81,17 @@ def add(connection, name, description=None):
     Add a new acl_group entry
     """
     return connection.run(SERVICE_NAME, ADD_METHOD, name, description)
+
+
+def modify(connection, identification, **data):
+    """
+    Modify an ACL entry
+
+    :param connection:
+    :param identification:
+    :param data:
+    """
+    return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
 
 
 class AclGroup(arc.base.Model):

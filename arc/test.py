@@ -88,6 +88,11 @@ def add(connection, name, test_type, path):
 
 def modify(connection, identification, **data):
     """
+    Modify a test entry
+
+    :param connection:
+    :param identification:
+    :param data:
     """
     return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
 

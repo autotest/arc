@@ -16,12 +16,10 @@
 Module with interface for fetching and manipulating hosts on a autotest server
 """
 
-import re
 import functools
 
 import arc.base
-import arc.defaults
-import arc.label
+import arc.shared.frontend
 
 
 __all__ = ['get_data',
@@ -30,14 +28,14 @@ __all__ = ['get_data',
            'get_ids_names',
            'get_data_by_id',
            'get_data_by_name',
-           'TestResult',
+           'Test',
            'get_objs']
 
 
 #
 # Service on RPC server hosting these methods
 #
-SERVICE_NAME = arc.defaults.TKO_SERVICE_NAME
+SERVICE_NAME = arc.shared.frontend.TKO_SERVICE_NAME
 
 
 #

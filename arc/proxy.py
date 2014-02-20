@@ -19,6 +19,7 @@ URLLIB_FROM_PY3K = False
 try:
     from urllib2 import Request, urlopen
 except ImportError:
+    # pylint: disable=E0611
     from urllib.request import Request, urlopen
     URLLIB_FROM_PY3K = True
 

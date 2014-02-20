@@ -17,10 +17,8 @@ This module defines the command line arguments that will be available on
 the arcli tool when the top level command (and module) server is executed
 """
 
-__all__ = ['ACTION_ARGUMENTS', 'ARGUMENTS']
+__all__ = ['ACTION_ARGUMENTS']
 
-
-import arc.cli.args.base
 
 #
 # Arguments that are treated as actions

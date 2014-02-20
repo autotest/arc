@@ -19,7 +19,6 @@ Module with interface for fetching and manipulating labels on a autotest server
 import functools
 
 import arc.base
-import arc.defaults
 import arc.shared.frontend
 
 
@@ -83,6 +82,17 @@ def add(connection, name, kernel_config=None, platform=None,
     """
     return connection.run(SERVICE_NAME, ADD_METHOD, name, kernel_config,
                           platform, only_if_needed)
+
+
+def modify(connection, identification, **data):
+    """
+    Modify a label entry
+
+    :param connection:
+    :param identification:
+    :param data:
+    """
+    return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
 
 
 class Label(arc.base.Model):

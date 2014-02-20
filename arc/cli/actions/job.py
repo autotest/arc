@@ -25,7 +25,6 @@ import tempfile
 
 import arc.cli.actions.base
 import arc.job
-import arc.tko.job
 import arc.host
 import arc.test
 
@@ -107,14 +106,14 @@ delete = arc.cli.actions.base.action(
 
 def edit_control_file(control_file):
     editor = os.environ.get('EDITOR', 'vi')
-    fd, new_control_file = tempfile.mkstemp(prefix='control')
+    _, new_control_file = tempfile.mkstemp(prefix='control')
     shutil.copyfile(control_file.name, new_control_file)
     os.system(editor + ' ' + new_control_file)
     control_file = open(new_control_file)
     return control_file
 
 def create_control_file(content):
-    fd, new_control_file = tempfile.mkstemp(prefix='control')
+    _, new_control_file = tempfile.mkstemp(prefix='control')
     with open(new_control_file, 'w') as f:
         f.write(content)
     return new_control_file

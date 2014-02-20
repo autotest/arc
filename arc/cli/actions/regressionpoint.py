@@ -19,7 +19,6 @@ command is used
 import sys
 
 import arc.utils
-import arc.testenvironment
 import arc.tko.test
 import arc.cli.actions.base
 import arc.cli.actions.testenvironment
