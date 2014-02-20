@@ -25,7 +25,6 @@ import tempfile
 
 import arc.cli.actions.base
 import arc.job
-import arc.tko.job
 import arc.host
 import arc.test
 

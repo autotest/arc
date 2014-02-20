@@ -20,10 +20,7 @@ A connection is a simple wrapper around a JSON-RPC Proxy instance. It is the
 basic object that allows methods to be called on the remote RPC server.
 """
 
-import os
-
 import arc.config
-import arc.defaults
 import arc.proxy
 import arc.shared.frontend
 import arc.shared.rpc

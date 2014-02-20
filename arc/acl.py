@@ -20,7 +20,6 @@ groups on a autotest server.
 import functools
 
 import arc.base
-import arc.defaults
 import arc.shared.frontend
 
 

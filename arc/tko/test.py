@@ -16,12 +16,10 @@
 Module with interface for fetching and manipulating hosts on a autotest server
 """
 
-import re
 import functools
 
 import arc.base
 import arc.defaults
-import arc.label
 
 
 __all__ = ['get_data',

@@ -20,8 +20,6 @@ the arcli tool when the top level command (and module) server is executed
 __all__ = ['ACTION_ARGUMENTS', 'ARGUMENTS']
 
 
-import arc.cli.args.base
-
 #
 # Arguments that are treated as actions
 #

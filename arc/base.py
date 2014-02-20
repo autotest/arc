@@ -26,9 +26,6 @@ __all__ = ['get_by',
            'Model']
 
 
-import arc.defaults
-
-
 def get_data(service, method, connection, **data_filter):
     """
     Base function to fetch data from the RPC server

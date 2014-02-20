@@ -20,7 +20,6 @@ import re
 import functools
 
 import arc.base
-import arc.defaults
 import arc.label
 import arc.shared.frontend
 

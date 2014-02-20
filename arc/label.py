@@ -19,7 +19,6 @@ Module with interface for fetching and manipulating labels on a autotest server
 import functools
 
 import arc.base
-import arc.defaults
 import arc.shared.frontend
 
 

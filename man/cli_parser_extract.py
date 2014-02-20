@@ -16,7 +16,6 @@
 
 import os
 import sys
-import argparse
 import StringIO
 
 THIS_FILE = os.path.abspath(__file__)

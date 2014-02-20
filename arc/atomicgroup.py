@@ -20,7 +20,6 @@ manage atomic groups in Autotest.
 import functools
 
 import arc.base
-import arc.defaults
 import arc.shared.frontend
 
 
