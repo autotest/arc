@@ -84,6 +84,17 @@ def add(connection, name, kernel_config=None, platform=None,
                           platform, only_if_needed)
 
 
+def modify(connection, identification, **data):
+    """
+    Modify a label entry
+
+    :param connection:
+    :param identification:
+    :param data:
+    """
+    return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
+
+
 class Label(arc.base.Model):
     """
     Interface for manipulating labels on an autotest server

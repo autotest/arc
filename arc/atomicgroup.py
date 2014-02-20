@@ -96,6 +96,15 @@ def delete_labels(connection, identification, labels):
     return connection.run(SERVICE_NAME, 'atomic_group_remove_labels',
                           identification, labels)
 
+def modify(connection, identification, **data):
+    """
+    Modify an atomic group entry
+
+    :param connection:
+    :param identification:
+    :param data:
+    """
+    return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
 
 class AtomicGroup(arc.base.Model):
     """Interface model for Atomic Group on Autotest server."""

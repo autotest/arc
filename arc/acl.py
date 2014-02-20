@@ -83,6 +83,17 @@ def add(connection, name, description=None):
     return connection.run(SERVICE_NAME, ADD_METHOD, name, description)
 
 
+def modify(connection, identification, **data):
+    """
+    Modify an ACL entry
+
+    :param connection:
+    :param identification:
+    :param data:
+    """
+    return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
+
+
 class AclGroup(arc.base.Model):
     """
     Interface for manipulating ACL groups on an autotest server
