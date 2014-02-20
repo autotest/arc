@@ -11,4 +11,3 @@
 #
 # Copyright (c) 2013-2014 Red Hat
 # Author: Cleber Rosa <cleber@redhat.com>
-
