@@ -95,7 +95,7 @@ def add(connection, name, status=None, locked=None, protection=None):
 
 def modify(connection, identification, **data):
     """
-   Modify a host entry
+    Modify a host entry
 
     :param connection:
     :param identification:
