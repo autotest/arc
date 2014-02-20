@@ -28,7 +28,7 @@ __all__ = ['get_data',
            'get_ids_names',
            'get_data_by_id',
            'get_data_by_name',
-           'TestResult',
+           'Test',
            'get_objs']
 
 
