@@ -12,6 +12,7 @@
 # Copyright (c) 2013-2014 Red Hat
 # Author: Cleber Rosa <cleber@redhat.com>
 
+# pylint: disable=E0611
 from distutils.core import setup
 from sphinx.setup_command import BuildDoc
 
