@@ -210,7 +210,7 @@ class Parser(argparse.ArgumentParser):
             if module.ARGUMENTS:
                 for arg in module.ARGUMENTS:
                     # Add config instance to the options
-                    if arg[1].get('config', None) == True:
+                    if arg[1].get('config', None) is True:
                         arg[1]['config'] = self.config
                     # Support either both short+long options or either one, short OR long
                     short_and_or_long_opts = arg[0]
