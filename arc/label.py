@@ -96,6 +96,7 @@ def modify(connection, identification, **data):
 
 
 class Label(arc.base.Model):
+
     """
     Interface for manipulating labels on an autotest server
     """

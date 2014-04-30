@@ -95,6 +95,7 @@ def modify(connection, identification, **data):
 
 
 class AclGroup(arc.base.Model):
+
     """
     Interface for manipulating ACL groups on an autotest server
     """

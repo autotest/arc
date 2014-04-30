@@ -66,6 +66,7 @@ get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
 
 
 class LinuxDistro(arc.base.Model):
+
     """
     Interface for manipulating hosts on an autotest server
     """

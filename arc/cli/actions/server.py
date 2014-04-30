@@ -42,6 +42,7 @@ def status(app):
 
     return stat["concerns"]
 
+
 @arc.cli.actions.base.action
 def list_install_profiles(app):
     """

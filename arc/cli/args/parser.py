@@ -31,9 +31,11 @@ __all__ = ['Parser']
 
 
 class ConfigArgumentDefaultsHelpFormatter(argparse.HelpFormatter):
+
     '''
     Custom Help Formatter that also shows values from current configuration
     '''
+
     def _expand_help(self, action):
         '''
         Expands the help string, adding parameter names, choices, etc
@@ -83,6 +85,7 @@ class ConfigArgumentDefaultsHelpFormatter(argparse.HelpFormatter):
 
 
 class ShortcutEnablerParser(argparse.ArgumentParser):
+
     '''
     Simple argument parser that does not care about choices and actual choice
 
@@ -90,6 +93,7 @@ class ShortcutEnablerParser(argparse.ArgumentParser):
     options before the ChoicesShortcutAction has the chance to actually set
     the full value based on the given (shortcut) value.
     '''
+
     def __init__(self, **kwargs):
         super(ShortcutEnablerParser, self).__init__(**kwargs)
 
@@ -104,9 +108,11 @@ class ShortcutEnablerParser(argparse.ArgumentParser):
 
 
 class Parser(argparse.ArgumentParser):
+
     '''
     The main CLI Argument Parser.
     '''
+
     def __init__(self, config=None):
         '''
         Initializes a new parser
@@ -117,7 +123,7 @@ class Parser(argparse.ArgumentParser):
         super(Parser, self).__init__(
             formatter_class=ConfigArgumentDefaultsHelpFormatter,
             description='Autotest RPC Client Command Line Interface App'
-            )
+        )
 
         self.config = config
         self._subparsers = None
@@ -138,7 +144,7 @@ class Parser(argparse.ArgumentParser):
             config=self.config,
             config_section='server',
             config_key='host'
-            )
+        )
         server_group.add_argument(
             '--username',
             help=('Username to login in autotest server'),
@@ -146,8 +152,7 @@ class Parser(argparse.ArgumentParser):
             config=self.config,
             config_section='server',
             config_key='username'
-            )
-
+        )
 
     def add_arguments_on_all_modules(self,
                                      prefix=arc.defaults.ARGS_MODULE_PREFIX):
@@ -183,7 +188,7 @@ class Parser(argparse.ArgumentParser):
                 title='Top Level Command',
                 dest='top_level_action',
                 parser_class=ShortcutEnablerParser
-                )
+            )
 
         module_name = "%s.%s" % (arc.defaults.ARGS_MODULE_PREFIX, name)
         module = importlib.import_module(module_name)
@@ -205,7 +210,7 @@ class Parser(argparse.ArgumentParser):
             if module.ARGUMENTS:
                 for arg in module.ARGUMENTS:
                     # Add config instance to the options
-                    if arg[1].get('config', None) == True:
+                    if arg[1].get('config', None) is True:
                         arg[1]['config'] = self.config
                     # Support either both short+long options or either one, short OR long
                     short_and_or_long_opts = arg[0]

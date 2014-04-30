@@ -66,6 +66,7 @@ get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
 
 
 class Test(arc.base.Model):
+
     """
     Interface that maps the server side tko's Test model
     """

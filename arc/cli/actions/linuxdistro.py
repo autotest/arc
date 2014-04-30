@@ -47,6 +47,7 @@ def format_distro(distro, label=None):
 
     return result
 
+
 def print_distro(distro, label=None):
     '''
     Prints the given LinuxDistro

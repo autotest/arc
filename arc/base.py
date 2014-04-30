@@ -96,6 +96,7 @@ def delete(service, method, connection, identification):
 
 
 class Model(object):
+
     """
     Base class for modeling objects from the RPC server JSON data
     """

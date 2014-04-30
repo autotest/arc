@@ -29,9 +29,11 @@ __all__ = ['ConfigDefaultAction', 'ChoicesShortcutAction']
 
 
 class ConfigDefaultAction(argparse.Action):
+
     """
     An argument action that optionally has a default set on a config file
     """
+
     def __init__(self, **kwargs):
         self.config = kwargs.pop('config', None)
         self.config_section = kwargs.pop('config_section', None)
@@ -63,9 +65,11 @@ class ConfigDefaultAction(argparse.Action):
 
 
 class ChoicesShortcutAction(ConfigDefaultAction):
+
     """
     Argument that allows for shorter input and also a config based default
     """
+
     def __init__(self, **kwargs):
         ConfigDefaultAction.__init__(self, **kwargs)
 

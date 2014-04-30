@@ -36,6 +36,7 @@ MIN_REQUIRED_VERSION[arc.shared.frontend.TKO_SERVICE_NAME] = (2013, 5, 23)
 
 
 class AuthError(Exception):
+
     """
     Authentication Error reported users of the connection module
     """
@@ -43,6 +44,7 @@ class AuthError(Exception):
 
 
 class RpcAuthError(Exception):
+
     """
     Internal (between connection and Rpc Proxy) Authentication Error
     """
@@ -50,6 +52,7 @@ class RpcAuthError(Exception):
 
 
 class InvalidProxyError(Exception):
+
     """
     Invalid proxy for selected service
     """
@@ -57,6 +60,7 @@ class InvalidProxyError(Exception):
 
 
 class InvalidServiceVersionError(Exception):
+
     """
     The service version does not satisfy the minimum required version
     """
@@ -64,9 +68,11 @@ class InvalidServiceVersionError(Exception):
 
 
 class BaseConnection(object):
+
     """
     Base RPC connection
     """
+
     def __init__(self, hostname=None, port=None, path=None, username=None):
         """
         Initializes a connection to an empty path
@@ -175,6 +181,7 @@ class BaseConnection(object):
 
 
 class Connection(BaseConnection):
+
     """
     The default connection that allows access to both AFE and TKO services
 
@@ -182,6 +189,7 @@ class Connection(BaseConnection):
            contacted upon RPC method execution.
     :param port: the port number where the RPC server is running
     """
+
     def __init__(self, hostname=None, port=None, username=None):
         super(Connection, self).__init__(hostname, port, username=username)
         for (name, path) in arc.shared.rpc.PATHS.items():

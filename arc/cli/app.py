@@ -34,9 +34,11 @@ __all__ = ['App']
 
 
 class App(object):
+
     """
     Base class for CLI application
     """
+
     def __init__(self, config_klass=None, argument_parser_klass=None):
         """
         Initializes a new app instance.

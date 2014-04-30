@@ -104,6 +104,7 @@ delete = arc.cli.actions.base.action(
     functools.partial(arc.cli.actions.base.delete_by_id,
                       OBJ_NAME, arc.job.Job, arc.job.delete))
 
+
 def edit_control_file(control_file):
     editor = os.environ.get('EDITOR', 'vi')
     _, new_control_file = tempfile.mkstemp(prefix='control')
@@ -112,11 +113,13 @@ def edit_control_file(control_file):
     control_file = open(new_control_file)
     return control_file
 
+
 def create_control_file(content):
     _, new_control_file = tempfile.mkstemp(prefix='control')
     with open(new_control_file, 'w') as f:
         f.write(content)
     return new_control_file
+
 
 def print_job(connection, job_id, show_all=False):
     job = arc.job.get_data_by_id(connection, job_id)
@@ -128,7 +131,6 @@ def print_job(connection, job_id, show_all=False):
         words = [w.capitalize() for w in words]
         label = " ".join(words)
         job_labels[k] = label
-
 
     if not show_all:
         skip = ["control_file", "parameterized_job", "reserve_hosts",
