@@ -45,10 +45,12 @@ delete = arc.cli.actions.base.action(
     functools.partial(arc.cli.actions.base.delete,
                       OBJ_NAME, arc.user.User, arc.user.delete))
 
+
 def print_user(connection, user_id, show_all=False):
     user = arc.user.get_data_by_id(connection, user_id)
     if user:
         arc.utils.print_obj_content(user)
+
 
 @arc.cli.actions.base.action
 def show(app):

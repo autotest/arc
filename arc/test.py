@@ -109,7 +109,9 @@ def get_control_file_by_id(connection, identification):
                           tests=(identification,))
     return test['control_file']
 
+
 class Test(arc.base.Model):
+
     """
     Interface for manipulating hosts on an autotest server
     """

@@ -53,7 +53,7 @@ def parse_pair(pair):
                 # and is really specific to the "type" of ID we're dealing
                 # with and also the fact that this code is used during the app
                 # argument parsing, let's assume -1 for now
-                ids = [int(ids[0]), int(ids[0])-1]
+                ids = [int(ids[0]), int(ids[0]) - 1]
                 break
     return ids
 
@@ -94,6 +94,7 @@ def print_tabular_data(fields, values, show_header=True):
     for value in values:
         print mask.format(*value)
 
+
 def print_objs_brief_as_table(objs):
     '''
     Prints objects as a table (brief).
@@ -106,6 +107,7 @@ def print_objs_brief_as_table(objs):
     if values:
         fields = [obj.ID_FIELD.upper(), obj.NAME_FIELD.upper()]
         print_tabular_data(fields, values)
+
 
 def print_objs_as_table(objs):
     '''
@@ -125,6 +127,7 @@ def print_objs_as_table(objs):
         fields.extend(extra)
         print_tabular_data(fields, values)
 
+
 def print_obj_content(obj):
     '''
     Prints object content.
@@ -132,5 +135,5 @@ def print_obj_content(obj):
     :rtype: None
     '''
     for fld in obj.keys():
-        label = fld.replace('_', ' ').title() # 'foo_bar' => 'Foo Bar'
+        label = fld.replace('_', ' ').title()  # 'foo_bar' => 'Foo Bar'
         print "%s: %s" % (label, obj[fld])

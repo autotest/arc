@@ -56,13 +56,16 @@ get_data_by_id = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
 get_data_by_name = functools.partial(arc.base.get_by, SERVICE_NAME, GET_METHOD,
                                      NAME_FIELD)
 
+
 class TestEnvironment(arc.base.Model):
+
     """
     Interface for manipulating hosts on an autotest server
     """
     ID_FIELD = ID_FIELD
     NAME_FIELD = ID_FIELD
     FIELDS = ['distro']
+
     def __init__(self, connection, identification=None, name=None):
         super(TestEnvironment, self).__init__(connection,
                                               identification,

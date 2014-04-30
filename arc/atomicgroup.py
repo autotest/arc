@@ -86,15 +86,18 @@ def add(connection, name, description=None, max_number_of_machines=None,
     return connection.run(SERVICE_NAME, ADD_METHOD, name, description,
                           max_number_of_machines)
 
+
 def add_labels(connection, identification, labels):
     """Add labels to an atomic group."""
     return connection.run(SERVICE_NAME, 'atomic_group_add_labels',
                           identification, labels)
 
+
 def delete_labels(connection, identification, labels):
     """Delete labels from an atomic group."""
     return connection.run(SERVICE_NAME, 'atomic_group_remove_labels',
                           identification, labels)
+
 
 def modify(connection, identification, **data):
     """
@@ -106,7 +109,9 @@ def modify(connection, identification, **data):
     """
     return connection.run(SERVICE_NAME, MODIFY_METHOD, identification, **data)
 
+
 class AtomicGroup(arc.base.Model):
+
     """Interface model for Atomic Group on Autotest server."""
     ID_FIELD = ID_FIELD
     NAME_FIELD = NAME_FIELD

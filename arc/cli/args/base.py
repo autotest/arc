@@ -40,7 +40,7 @@ LIST_BRIEF = (('-l', '--list-brief',),
 LIST_FULL = (('-L', '--list-full',),
              {'help': 'list all records with all information',
               'action': 'store_true',
-               'default': False})
+              'default': False})
 
 
 DELETE = (('-d', '--delete',),

@@ -173,6 +173,7 @@ def delete(connection, numeric_id):
 
 
 class Job(arc.base.Model):
+
     """
     Interface for manipulating a job on an autotest server
     """

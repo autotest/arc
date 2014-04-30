@@ -29,6 +29,7 @@ import arc.cli.args.parser
 
 
 class DummyParser(arc.cli.args.parser.Parser):
+
     def exit(self):
         pass
 

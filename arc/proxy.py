@@ -28,6 +28,7 @@ __all__ = ['DecodeError', 'RPCError', 'Proxy', 'Method']
 
 
 class DecodeError(Exception):
+
     """
     Error raised when data can not be decoded into proper JSON
     """
@@ -35,6 +36,7 @@ class DecodeError(Exception):
 
 
 class RPCError(Exception):
+
     """
     Error raised when JSON RPC call has errors
     """
@@ -42,9 +44,11 @@ class RPCError(Exception):
 
 
 class Proxy(object):
+
     """
     Service proxy to a JSON RPC Server
     """
+
     def __init__(self, uri, headers={}):
         """
         Initializes a new proxy
@@ -70,9 +74,11 @@ class Proxy(object):
 
 
 class Method(object):
+
     """
     Class that wrapps an RPC Server Method
     """
+
     def __init__(self, uri, headers, name):
         """
         Initializes a new method

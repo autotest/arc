@@ -47,7 +47,6 @@ def find(app):
         print('Insufficient data to determine a regression point')
         sys.exit(-1)
 
-
     # sorts by job_idx the latest job error/failure
     last_failure_test = -1
     last_failure_job = -1

@@ -25,16 +25,19 @@ import arc.testenvironment
 import arc.cli.actions.base
 import arc.cli.actions.linuxdistro
 
+
 def format_kind_default(software_component):
     return ('%(kind)s %(name)s (version: %(version)s, '
             'release: %(release)s, arch: %(arch)s, '
             'checksum: %(checksum)s)' % software_component)
+
 
 def format_kind_git_repo(software_component):
     return ('%(kind)s %(name)s (commit: %(checksum)s)' % software_component)
 
 formatters = {"default": format_kind_default,
               "git_repo": format_kind_git_repo}
+
 
 def format_software_components(software_components):
     result = []
@@ -44,10 +47,12 @@ def format_software_components(software_components):
         result.append(formatter(sc))
     return result
 
+
 def print_software_components(software_components):
     lines = format_software_components(software_components)
     lines = ["%s\n" % l for l in lines]
     print("".join(lines))
+
 
 @arc.cli.actions.base.action
 def show(app):
@@ -61,7 +66,6 @@ def show(app):
 
     test_env = test_env_list[0]
     label = 'for test environment #%s:' % test_environment
-
 
     software_components = app.connection.run(
         'afe',
@@ -108,6 +112,7 @@ def get_diff(connection, ids):
 
     output = "".join(output)
     return output
+
 
 @arc.cli.actions.base.action
 def diff(app):

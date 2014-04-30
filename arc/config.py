@@ -42,6 +42,7 @@ except ImportError:
 
 
 class SystemWideConfigParser(configparser.ConfigParser):
+
     """
     This is a parser for the system wide configuration for the autotest rpc
     client library.
@@ -56,6 +57,7 @@ class SystemWideConfigParser(configparser.ConfigParser):
 
 
 class UserLocalConfigParser(configparser.ConfigParser):
+
     """
     This is a parser for the configuration file that is specific to the
     current user and lives on his home directory.

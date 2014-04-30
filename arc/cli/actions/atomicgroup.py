@@ -46,12 +46,14 @@ delete = arc.cli.actions.base.action(
                       OBJ_NAME, arc.atomicgroup.AtomicGroup,
                       arc.atomicgroup.delete))
 
+
 def print_atomicgroup(connection, atomicgroup_id, show_all=False):
     atomicgroup = arc.atomicgroup.get_data_by_id(connection, atomicgroup_id)
     if atomicgroup:
         arc.utils.print_obj_content(atomicgroup)
 
+
 @arc.cli.actions.base.action
 def show(app):
     print_atomicgroup(app.connection,
-               app.parsed_arguments.show)
+                      app.parsed_arguments.show)

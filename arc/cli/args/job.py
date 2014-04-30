@@ -113,7 +113,7 @@ ARG_RUNNING = (('--all',),
 
 ARG_FROM_TEST = (('-T', '--from-test-number'),
                  {'help': ('Add (create) a new job using the control file'
-                  'from a test registered on the autotest server'),
+                           'from a test registered on the autotest server'),
                   'type': int,
                   'metavar': 'TEST_ID'})
 
@@ -140,7 +140,7 @@ ACTION_DELETE = (('-d', '--delete'),
 ACTION_SHOW = (('-s', '--show'),
                {'help': 'shows details about a job',
                 'default': False,
-                'type' : int,
+                'type': int,
                 'metavar': 'JOB_ID'})
 
 #

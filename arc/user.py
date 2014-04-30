@@ -84,6 +84,7 @@ def add(connection, login, access_level=None):
     """
     return connection.run(SERVICE_NAME, ADD_METHOD, login, access_level)
 
+
 def modify(connection, user_id, **data):
     """
     Modify an user entry
@@ -93,6 +94,7 @@ def modify(connection, user_id, **data):
     :param data:
     """
     return connection.run(SERVICE_NAME, MODIFY_METHOD, user_id, **data)
+
 
 def delete(connection, user_id):
     """
@@ -105,6 +107,7 @@ def delete(connection, user_id):
 
 
 class User(arc.base.Model):
+
     """
     Interface for manipulating users on an autotest server
     """

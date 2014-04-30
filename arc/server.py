@@ -31,6 +31,7 @@ def get_profiles(connection):
     return connection.run(arc.shared.frontend.AFE_SERVICE_NAME,
                           'get_profiles')
 
+
 def get_status(connection):
     '''
     Returns the general status of the Autotest server
